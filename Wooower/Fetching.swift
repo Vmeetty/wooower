@@ -11,14 +11,14 @@ import Parse
 
 class Fetching {
     
-    static func fetchPosts () -> [PFObject] {
-        var postObjects: [PFObject] = []
+    static func fetchPosts () -> [String] {
+        var postObjects: [String] = []
         let query = PFQuery(className: "Post")
         query.findObjectsInBackground { (objects, error) in
             if let objects = objects {
-                for object in objects {
-                    postObjects.append(object)
-                }
+                postObjects = objects.map({ (postPfObject) -> String in
+                    return postPfObject["descriptions"] as? String ?? "Ups"
+                })
             }
         }
         return postObjects

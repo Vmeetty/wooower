@@ -14,20 +14,19 @@ let cellID = "wooowerCell"
 class MasterViewController: UIViewController {
     
     @IBOutlet weak var myTableView: UITableView!
-    var post: [Post] = []
+    var postDescription: [String] = []
 //    var post: [PFObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addToPost()
+
     }
     
-    func addToPost () {
-        post.append(Post(firstName: "Semen", lastName: "Lololl", avatarImage: UIImage(named: "user")!, description: "dsadasdasd"))
-        }
     
     override func viewWillAppear(_ animated: Bool) {
-//        fetchPosts()
+//        postDescription = Fetching.fetchPosts()
+//        myTableView.reloadData()
+        fetchPosts()
     }
     
     
@@ -43,31 +42,33 @@ class MasterViewController: UIViewController {
 extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return post.count
+        return postDescription.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TableViewCell
-        let object = post[indexPath.row]
-        cell?.post = object
+        let object = postDescription[indexPath.row]
+        cell?.descriptionTextView.text = object
         
         return cell!
     }
     
 }
 
-//extension MasterViewController {
-//    
-//    func fetchPosts () {
-//        let query = PFQuery(className: "Post")
-//        query.findObjectsInBackground { (objects, error) in
-//            if let objects = objects {
-//                self.post = objects
-//                self.myTableView.reloadData()
-//            }
-//        }
-//    }
-//
-//    
-//}
+extension MasterViewController {
+    
+    func fetchPosts () {
+        let query = PFQuery(className: "Post")
+        query.findObjectsInBackground { (objects, error) in
+            if let objects = objects {
+                self.postDescription = objects.map({ (post) -> String in
+                    return post["descriptions"] as? String ?? "Ups"
+                })
+                self.myTableView.reloadData()
+            }
+        }
+    }
+
+    
+}
 
