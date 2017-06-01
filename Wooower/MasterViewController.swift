@@ -24,7 +24,7 @@ class MasterViewController: UIViewController {
     
     func addToPost () {
         post.append(Post(firstName: "Semen", lastName: "Lololl", avatarImage: UIImage(named: "user")!, description: "dsadasdasd"))
-    }
+        }
     
     override func viewWillAppear(_ animated: Bool) {
 //        fetchPosts()
