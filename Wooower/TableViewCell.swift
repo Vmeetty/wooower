@@ -12,6 +12,7 @@ class TableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var firstAndLastNameLabel: UILabel!
     
@@ -22,5 +23,6 @@ class TableViewCell: UITableViewCell {
             firstAndLastNameLabel.text = (post?.firstName)! + " " + (post?.lastName)!
         }
     }
+    
 
 }

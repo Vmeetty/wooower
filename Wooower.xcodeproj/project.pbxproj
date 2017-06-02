@@ -13,6 +13,7 @@
 		F530DD851EDEE81800A4E235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD831EDEE81800A4E235 /* Main.storyboard */; };
 		F530DD871EDEE81800A4E235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F530DD861EDEE81800A4E235 /* Assets.xcassets */; };
 		F530DD8A1EDEE81800A4E235 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD881EDEE81800A4E235 /* LaunchScreen.storyboard */; };
+		F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587EF91EE1565100A363FB /* AddViewController.swift */; };
 		F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5331EDFFFAB00B0F030 /* Post.swift */; };
 		F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5351EE005E000B0F030 /* TableViewCell.swift */; };
 		F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB53A1EE0077E00B0F030 /* Fetching.swift */; };
@@ -29,6 +30,7 @@
 		F530DD861EDEE81800A4E235 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F530DD891EDEE81800A4E235 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F530DD8B1EDEE81800A4E235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5587EF91EE1565100A363FB /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		F5CCB5331EDFFFAB00B0F030 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F5CCB5351EE005E000B0F030 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		F5CCB53A1EE0077E00B0F030 /* Fetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetching.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				F530DD811EDEE81700A4E235 /* MasterViewController.swift */,
+				F5587EF91EE1565100A363FB /* AddViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			files = (
 				F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */,
 				F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */,
+				F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */,
 				F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */,
 				F530DD821EDEE81700A4E235 /* MasterViewController.swift in Sources */,
 				F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */,

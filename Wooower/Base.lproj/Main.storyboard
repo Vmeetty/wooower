@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,6 +35,9 @@
                                                 <state key="normal" title="Сreate">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="Xll-Iz-dOV" kind="presentation" id="A87-2I-V8x"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,7 +83,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xwe-T9-NxJ" id="2IF-J4-Vk3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVz-Xh-eMD">
@@ -129,6 +133,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avatarImage" destination="gcj-u8-Rjo" id="Rfw-u8-a8i"/>
+                                            <outlet property="avatarView" destination="gVz-Xh-eMD" id="axa-c1-Dp2"/>
                                             <outlet property="descriptionTextView" destination="iG6-7S-wbX" id="iRJ-KI-iTW"/>
                                             <outlet property="firstAndLastNameLabel" destination="ohr-Jr-EPq" id="2Qo-be-nm8"/>
                                         </connections>
@@ -152,6 +157,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Events feed" id="FzX-DL-dkd">
+                        <barButtonItem key="leftBarButtonItem" title="Sign in" id="9bo-an-2zJ">
+                            <connections>
+                                <action selector="showLoginFormAction:" destination="BYZ-38-t0r" id="zwi-rN-R59"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="dnc-3C-seI"/>
                     </navigationItem>
                     <connections>
@@ -161,6 +171,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1056.5" y="122.5"/>
+        </scene>
+        <!--Create activity-->
+        <scene sceneID="opc-ac-oTl">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="NAE-Tn-AzM" customClass="AddViewController" customModule="Wooower" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qpk-1U-DEK"/>
+                        <viewControllerLayoutGuide type="bottom" id="tLx-yh-fCP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wSk-js-FKq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Delete this text and create new..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kWf-6Y-nGj">
+                                <rect key="frame" x="16" y="80" width="343" height="611"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="611" id="Cd6-a9-E8p"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="kWf-6Y-nGj" secondAttribute="trailing" id="40c-Zh-FlK"/>
+                            <constraint firstItem="kWf-6Y-nGj" firstAttribute="top" secondItem="qpk-1U-DEK" secondAttribute="bottom" constant="16" id="XI0-UC-KzR"/>
+                            <constraint firstItem="kWf-6Y-nGj" firstAttribute="leading" secondItem="wSk-js-FKq" secondAttribute="leadingMargin" id="dbS-RQ-12Z"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create activity" id="kpA-yq-H4m">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xmF-4w-YUk">
+                            <connections>
+                                <action selector="cancelAction:" destination="NAE-Tn-AzM" id="ZUh-LB-rwA"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="done" systemItem="done" id="YzI-Kl-3jc">
+                                <connections>
+                                    <action selector="createAction:" destination="NAE-Tn-AzM" id="eft-n2-BUE"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="camera" id="0Gr-iS-tNV"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="kWf-6Y-nGj" id="B92-Wt-oeo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M0j-7Z-jM5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1992.8" y="909.89505247376314"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VGq-VD-lSn">
@@ -179,6 +242,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVF-HL-EJZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="-560.86956521739137"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bNL-ei-RPk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Xll-Iz-dOV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="L39-xr-dkA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NAE-Tn-AzM" kind="relationship" relationship="rootViewController" id="P6K-5B-6zr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4PK-z5-QC9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1053.5999999999999" y="909.89505247376314"/>
         </scene>
     </scenes>
 </document>

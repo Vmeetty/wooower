@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 let cellID = "wooowerCell"
 
@@ -16,6 +17,7 @@ class MasterViewController: UIViewController {
     @IBOutlet weak var myTableView: UITableView!
     var postDescription: [String] = []
 //    var post: [PFObject] = []
+    var post: [Post] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,12 @@ class MasterViewController: UIViewController {
         fetchPosts()
     }
     
+    @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
+        let login = PFLogInViewController()
+        present(login, animated: true) {
+        }
+    
+    }
     
 
     override func didReceiveMemoryWarning() {
@@ -47,8 +55,9 @@ extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TableViewCell
-        let object = postDescription[indexPath.row]
-        cell?.descriptionTextView.text = object
+        let description = postDescription[indexPath.row]
+        cell?.descriptionTextView.text = description
+        
         
         return cell!
     }
