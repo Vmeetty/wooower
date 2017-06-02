@@ -14,13 +14,14 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var avatarImage: UIImageView!
-    @IBOutlet weak var firstAndLastNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    
     
     var post: Post? {
         didSet {
             descriptionTextView.text = post?.description
-            avatarImage.image = post?.avatarImage
-            firstAndLastNameLabel.text = (post?.firstName)! + " " + (post?.lastName)!
+            avatarImage.image = UIImage(named: "user")
+            nameLabel.text = post?.name
         }
     }
     

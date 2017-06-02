@@ -103,7 +103,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="gcj-u8-Rjo" secondAttribute="bottom" id="t1Y-1F-XZz"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohr-Jr-EPq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohr-Jr-EPq">
                                                     <rect key="frame" x="97" y="28" width="271" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -135,7 +135,7 @@
                                             <outlet property="avatarImage" destination="gcj-u8-Rjo" id="Rfw-u8-a8i"/>
                                             <outlet property="avatarView" destination="gVz-Xh-eMD" id="axa-c1-Dp2"/>
                                             <outlet property="descriptionTextView" destination="iG6-7S-wbX" id="iRJ-KI-iTW"/>
-                                            <outlet property="firstAndLastNameLabel" destination="ohr-Jr-EPq" id="2Qo-be-nm8"/>
+                                            <outlet property="nameLabel" destination="ohr-Jr-EPq" id="LFf-Lg-UEa"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

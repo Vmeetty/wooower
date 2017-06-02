@@ -15,8 +15,6 @@ let cellID = "wooowerCell"
 class MasterViewController: UIViewController {
     
     @IBOutlet weak var myTableView: UITableView!
-    var postDescription: [String] = []
-//    var post: [PFObject] = []
     var post: [Post] = []
 
     override func viewDidLoad() {
@@ -26,9 +24,8 @@ class MasterViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-//        postDescription = Fetching.fetchPosts()
-//        myTableView.reloadData()
         fetchPosts()
+        self.myTableView.reloadData()
     }
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
@@ -50,14 +47,13 @@ class MasterViewController: UIViewController {
 extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postDescription.count
+        return post.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TableViewCell
-        let description = postDescription[indexPath.row]
-        cell?.descriptionTextView.text = description
-        
+        let post = self.post[indexPath.row]
+        cell?.post = post
         
         return cell!
     }
@@ -70,8 +66,11 @@ extension MasterViewController {
         let query = PFQuery(className: "Post")
         query.findObjectsInBackground { (objects, error) in
             if let objects = objects {
-                self.postDescription = objects.map({ (post) -> String in
-                    return post["descriptions"] as? String ?? "Ups"
+                self.post = objects.map({ (post) -> Post in
+                    let user = PFUser.current()
+                    let userName = user?["username"]
+                    let post = Post(name: userName as! String, description: post["descriptions"] as! String)
+                    return post
                 })
                 self.myTableView.reloadData()
             }
