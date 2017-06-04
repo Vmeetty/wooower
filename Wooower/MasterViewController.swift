@@ -67,9 +67,20 @@ extension MasterViewController {
         query.findObjectsInBackground { (objects, error) in
             if let objects = objects {
                 self.post = objects.map({ (post) -> Post in
-                    let user = PFUser.current()
-                    let userName = user?["username"]
-                    let post = Post(name: userName as! String, description: post["descriptions"] as! String)
+                    // fetch user for post
+                    var userName = ""
+                    if let user = post["user"] as? PFUser {
+                        // ** Использовать fetchIfNeededInBackground()
+                        do {
+                            let u = try user.fetchIfNeeded()
+                            if let username = u.username {
+                                userName = username
+                            }
+                        }catch {
+                            print("There was no data about user.username. *Vlad")
+                        }
+                    }
+                    let post = Post(name: userName, description: post["descriptions"] as! String)
                     return post
                 })
                 self.myTableView.reloadData()
