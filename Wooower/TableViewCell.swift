@@ -19,10 +19,15 @@ class TableViewCell: UITableViewCell {
     
     var post: Post? {
         didSet {
-            descriptionTextView.text = post?.description
-            avatarImage.image = UIImage(named: "user")
-            nameLabel.text = post?.name
+            configCell()
         }
+    }
+    
+    func configCell () {
+        descriptionTextView.text = post?.description
+        avatarImage.image = UIImage(named: "user")
+        nameLabel.text = post?.name
+//        avatarView.layer.cornerRadius = 40
     }
     
 

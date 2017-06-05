@@ -36,6 +36,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="createAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2AA-IK-AZe"/>
                                                     <segue destination="Xll-Iz-dOV" kind="presentation" id="A87-2I-V8x"/>
                                                 </connections>
                                             </button>
@@ -89,7 +90,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVz-Xh-eMD">
                                                     <rect key="frame" x="8" y="21" width="80" height="80"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gcj-u8-Rjo">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gcj-u8-Rjo">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                         </imageView>
                                                     </subviews>
@@ -211,7 +212,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="done" systemItem="done" id="YzI-Kl-3jc">
                                 <connections>
-                                    <action selector="createAction:" destination="NAE-Tn-AzM" id="eft-n2-BUE"/>
+                                    <action selector="saveAction:" destination="NAE-Tn-AzM" id="EJg-2K-D8N"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="camera" id="0Gr-iS-tNV"/>

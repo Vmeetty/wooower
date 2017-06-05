@@ -21,8 +21,7 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
 
     }
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         fetchPosts()
         self.myTableView.reloadData()
@@ -33,6 +32,17 @@ class MasterViewController: UIViewController {
         present(login, animated: true) {
         }
     
+    }
+    
+    @IBAction func createAction(_ sender: UIButton) {
+        if PFUser.current() == nil {
+            let alert = UIAlertController(title: "Log in for this", message: "To create activity you should be sign up", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Sign in", style: .default, handler: { (action) in
+                self.showLoginFormAction(UIBarButtonItem())
+            })
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
 

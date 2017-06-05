@@ -13,7 +13,7 @@ class AddViewController: UIViewController {
 
     @IBOutlet weak var descriptionTextView: UITextView!
     
-    @IBAction func createAction(_ sender: UIBarButtonItem) {
+    @IBAction func saveAction(_ sender: UIBarButtonItem) {
         let post = PFObject(className: "Post")
         post["descriptions"] = descriptionTextView.text
         post["user"] = PFUser.current()
