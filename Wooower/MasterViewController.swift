@@ -11,11 +11,13 @@ import Parse
 import ParseUI
 
 let cellID = "wooowerCell"
+let activityViewController = "ActivityViewController"
 
 class MasterViewController: UIViewController {
     
     @IBOutlet weak var myTableView: UITableView!
     var post: [Post] = []
+    var objects: [PFObject] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,7 @@ class MasterViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         fetchPosts()
-        self.myTableView.reloadData()
+//        self.myTableView.reloadData()
     }
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
@@ -45,6 +47,16 @@ class MasterViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == activityViewController {
+            if let activityVC = segue.destination as? ActivityViewController {
+                if let indexPath = myTableView.indexPathForSelectedRow {
+                    let object = objects[indexPath.row]
+                    activityVC.activityItem = object
+                }
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -76,6 +88,7 @@ extension MasterViewController {
         let query = PFQuery(className: "Post")
         query.findObjectsInBackground { (objects, error) in
             if let objects = objects {
+                self.objects = objects
                 self.post = objects.map({ (post) -> Post in
                     // fetch user for post
                     var userName = ""
@@ -97,7 +110,29 @@ extension MasterViewController {
             }
         }
     }
-
-    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
