@@ -25,9 +25,8 @@ class TableViewCell: UITableViewCell {
     
     func configCell () {
         descriptionTextView.text = post?.description
-        avatarImage.image = UIImage(named: "user")
         nameLabel.text = post?.name
-//        avatarView.layer.cornerRadius = 40
+        avatarView.layer.cornerRadius = 40
     }
     
 

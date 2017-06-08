@@ -15,6 +15,7 @@
 		F530DD8A1EDEE81800A4E235 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD881EDEE81800A4E235 /* LaunchScreen.storyboard */; };
 		F536C5281EE69F1400B3BF1C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */; };
 		F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587EF91EE1565100A363FB /* AddViewController.swift */; };
+		F56BC7B31EE9533D00C9FFFB /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56BC7B21EE9533D00C9FFFB /* ActivityTableViewController.swift */; };
 		F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5331EDFFFAB00B0F030 /* Post.swift */; };
 		F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5351EE005E000B0F030 /* TableViewCell.swift */; };
 		F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB53A1EE0077E00B0F030 /* Fetching.swift */; };
@@ -36,6 +37,7 @@
 		F530DD8B1EDEE81800A4E235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		F5587EF91EE1565100A363FB /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		F56BC7B21EE9533D00C9FFFB /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		F5CCB5331EDFFFAB00B0F030 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F5CCB5351EE005E000B0F030 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		F5CCB53A1EE0077E00B0F030 /* Fetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetching.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				F530DD811EDEE81700A4E235 /* MasterViewController.swift */,
 				F5587EF91EE1565100A363FB /* AddViewController.swift */,
 				F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */,
+				F56BC7B21EE9533D00C9FFFB /* ActivityTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F56BC7B31EE9533D00C9FFFB /* ActivityTableViewController.swift in Sources */,
 				F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */,
 				F5DA0FE81EE57B1B00E8ED97 /* KeyboardSize.swift in Sources */,
 				F5DA0FE61EE56AE300E8ED97 /* PickerConfig.swift in Sources */,
