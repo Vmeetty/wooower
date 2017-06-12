@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3A5F98D40A4ADF1818181698 /* Pods_Wooower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5C8AAB5FD6D108A31AC635 /* Pods_Wooower.framework */; };
+		F52A50A61EEA90CF00B4BA1C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A51EEA90CF00B4BA1C /* Comment.swift */; };
+		F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */; };
+		F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */; };
+		F52A50AC1EEAA10800B4BA1C /* ConfigCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */; };
 		F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */; };
 		F530DD821EDEE81700A4E235 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530DD811EDEE81700A4E235 /* MasterViewController.swift */; };
 		F530DD851EDEE81800A4E235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD831EDEE81800A4E235 /* Main.storyboard */; };
@@ -15,7 +19,6 @@
 		F530DD8A1EDEE81800A4E235 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD881EDEE81800A4E235 /* LaunchScreen.storyboard */; };
 		F536C5281EE69F1400B3BF1C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */; };
 		F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587EF91EE1565100A363FB /* AddViewController.swift */; };
-		F56BC7B31EE9533D00C9FFFB /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56BC7B21EE9533D00C9FFFB /* ActivityTableViewController.swift */; };
 		F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5331EDFFFAB00B0F030 /* Post.swift */; };
 		F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5351EE005E000B0F030 /* TableViewCell.swift */; };
 		F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB53A1EE0077E00B0F030 /* Fetching.swift */; };
@@ -28,6 +31,10 @@
 		2D5C8AAB5FD6D108A31AC635 /* Pods_Wooower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wooower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82E156DE0D59E4F679939049 /* Pods-Wooower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wooower.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wooower/Pods-Wooower.debug.xcconfig"; sourceTree = "<group>"; };
 		DF070D1FCE628D3A1DEED4EC /* Pods-Wooower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wooower.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wooower/Pods-Wooower.release.xcconfig"; sourceTree = "<group>"; };
+		F52A50A51EEA90CF00B4BA1C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
+		F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigActivityView.swift; sourceTree = "<group>"; };
+		F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCommentView.swift; sourceTree = "<group>"; };
 		F530DD7C1EDEE81700A4E235 /* Wooower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wooower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F530DD811EDEE81700A4E235 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -37,7 +44,6 @@
 		F530DD8B1EDEE81800A4E235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		F5587EF91EE1565100A363FB /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
-		F56BC7B21EE9533D00C9FFFB /* ActivityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		F5CCB5331EDFFFAB00B0F030 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F5CCB5351EE005E000B0F030 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		F5CCB53A1EE0077E00B0F030 /* Fetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetching.swift; sourceTree = "<group>"; };
@@ -96,11 +102,11 @@
 		F530DD7E1EDEE81700A4E235 /* Wooower */ = {
 			isa = PBXGroup;
 			children = (
+				F530DD831EDEE81800A4E235 /* Main.storyboard */,
 				F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */,
 				F5CCB5371EE005FF00B0F030 /* Controller */,
 				F5CCB5381EE0060A00B0F030 /* View */,
 				F5CCB5391EE0061000B0F030 /* Model */,
-				F530DD831EDEE81800A4E235 /* Main.storyboard */,
 				F530DD861EDEE81800A4E235 /* Assets.xcassets */,
 				F530DD881EDEE81800A4E235 /* LaunchScreen.storyboard */,
 				F530DD8B1EDEE81800A4E235 /* Info.plist */,
@@ -114,7 +120,6 @@
 				F530DD811EDEE81700A4E235 /* MasterViewController.swift */,
 				F5587EF91EE1565100A363FB /* AddViewController.swift */,
 				F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */,
-				F56BC7B21EE9533D00C9FFFB /* ActivityTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				F5CCB5351EE005E000B0F030 /* TableViewCell.swift */,
+				F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -131,6 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				F5CCB5331EDFFFAB00B0F030 /* Post.swift */,
+				F52A50A51EEA90CF00B4BA1C /* Comment.swift */,
+				F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */,
+				F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */,
 				F5CCB53A1EE0077E00B0F030 /* Fetching.swift */,
 				F5DA0FE51EE56AE300E8ED97 /* PickerConfig.swift */,
 				F5DA0FE71EE57B1B00E8ED97 /* KeyboardSize.swift */,
@@ -263,17 +272,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F56BC7B31EE9533D00C9FFFB /* ActivityTableViewController.swift in Sources */,
 				F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */,
 				F5DA0FE81EE57B1B00E8ED97 /* KeyboardSize.swift in Sources */,
 				F5DA0FE61EE56AE300E8ED97 /* PickerConfig.swift in Sources */,
 				F536C5281EE69F1400B3BF1C /* ActivityViewController.swift in Sources */,
+				F52A50AC1EEAA10800B4BA1C /* ConfigCommentView.swift in Sources */,
 				F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */,
 				F5DA0FEA1EE57E6900E8ED97 /* ObservKeybordView.swift in Sources */,
+				F52A50A61EEA90CF00B4BA1C /* Comment.swift in Sources */,
 				F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */,
 				F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */,
 				F530DD821EDEE81700A4E235 /* MasterViewController.swift in Sources */,
+				F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */,
 				F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */,
+				F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
