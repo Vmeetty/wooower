@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 let commentCellID = "commentCell"
-
+let allCommentsSegueID = "allCommentsSegueID"
 
 class ActivityViewController: UIViewController {
 
@@ -26,9 +26,7 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var pictureImageView: UIImageView!
-    @IBOutlet weak var avatarView: UIView!
-    @IBOutlet weak var nameComment: UILabel!
-    @IBOutlet weak var textComment: UILabel!
+    @IBOutlet weak var avatarView: UIView!    
     @IBOutlet weak var buttomCommentViewConstraint: NSLayoutConstraint!
     
     var comments: [Comment] = []
@@ -75,6 +73,14 @@ class ActivityViewController: UIViewController {
         return keyboardHeigth
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == allCommentsSegueID {
+            if let allCommentsVC = segue.destination as? AllCommentsViewController {
+                ConfigCommentView.sharedInstance.configComments(activity: activityItem, controller: allCommentsVC)
+            }
+        }
+    }
+    
     @IBAction func allCommentsAction(_ sender: UIButton) {
     }
     
@@ -88,7 +94,7 @@ class ActivityViewController: UIViewController {
             let relation = self.activityItem?.relation(forKey: "comments")
             relation?.add(comment)
             self.activityItem?.saveInBackground(block: { (succes, error) in
-                print("upload \(succes)")
+                self.myCommentTableView.reloadData()
             })
         }
     }
@@ -99,11 +105,14 @@ class ActivityViewController: UIViewController {
 extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return comments.count
+        return 3
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: commentCellID, for: indexPath) as! CommentsTableViewCell
-        cell.comment = comments[indexPath.row]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            cell.comment = self.comments[indexPath.row]
+        }
+        
         
         return cell
     }
