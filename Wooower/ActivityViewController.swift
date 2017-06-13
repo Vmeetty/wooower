@@ -10,7 +10,7 @@ import UIKit
 import Parse
 
 let commentCellID = "commentCell"
-let allCommentsSegueID = "allCommentsSegueID"
+let allCommentsSegue = "AllCommentsViewController"
 
 class ActivityViewController: UIViewController {
 
@@ -50,6 +50,7 @@ class ActivityViewController: UIViewController {
     
     func configView () {
         ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
+        ConfigCommentView.sharedInstance.configComments(activity: activityItem, sender: self)
     }
     
     func observKeybordView () {
@@ -73,15 +74,19 @@ class ActivityViewController: UIViewController {
         return keyboardHeigth
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == allCommentsSegueID {
-            if let allCommentsVC = segue.destination as? AllCommentsViewController {
-                ConfigCommentView.sharedInstance.configComments(activity: activityItem, controller: allCommentsVC)
-            }
-        }
-    }
     
     @IBAction func allCommentsAction(_ sender: UIButton) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == allCommentsSegue {
+            if let allCommentsVC = segue.destination as? AllCommentsViewController {
+                if let currentPost = activityItem {
+                    allCommentsVC.activityItem = currentPost
+                }
+            }
+        }
     }
     
     @IBAction func sendCommentAction(_ sender: UIButton) {

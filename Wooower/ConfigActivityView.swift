@@ -40,7 +40,7 @@ class ConfigActivityView {
                 }
             }
         }
-            ConfigCommentView.sharedInstance.configComments(activity: activity, controller: activityVC)
+//            ConfigCommentView.sharedInstance.configComments(activity: activity, comment: &activityVC.comments)
     }
 
     

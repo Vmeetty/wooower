@@ -15,7 +15,7 @@ class ConfigCommentView {
     static let sharedInstance = ConfigCommentView()
     private init () {}
     
-    func configComments (activity: PFObject?, controller: Any?) {
+    func configComments (activity: PFObject?, sender: Any) {
         let commentRelation = activity?.relation(forKey: "comments")
         let query = commentRelation?.query()
         query?.includeKey("user")
@@ -24,7 +24,11 @@ class ConfigCommentView {
             if let objects = comments {
                 objects.forEach({ (obj) in
                     if let userName = (obj["user"] as? PFUser)?.username {
-                        if let controller = controller as? ActivityViewController {
+                        if let controller = sender as? AllCommentsViewController {
+                            let comment = Comment(name: userName, text: (obj["text"] as! String))
+                            controller.comments.append(comment)
+                        }
+                        if let controller = sender as? ActivityViewController {
                             let comment = Comment(name: userName, text: (obj["text"] as! String))
                             controller.comments.append(comment)
                         }

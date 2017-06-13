@@ -2,37 +2,77 @@
 //  AllCommentsViewController.swift
 //  Wooower
 //
-//  Created by vlad on 12.06.17.
+//  Created by vlad on 13.06.17.
 //  Copyright © 2017 vladCh. All rights reserved.
 //
 
 import UIKit
+import Parse
 
 let allCommentCellID = "allCommentCellID"
 
 class AllCommentsViewController: UIViewController {
 
-    var allComment: [Comment] = []
-
+    var activityItem: PFObject? {
+        didSet {
+            configView ()
+        }
+    }
+    var comments: [Comment] = []
+    
+    @IBOutlet weak var myTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        ConfigCommentView.sharedInstance.configComments(activity: <#T##PFObject?#>, controller: <#T##Any?#>)
+        configView()
     }
     
-    
+    func configView () {
+        ConfigCommentView.sharedInstance.configComments(activity: activityItem, sender: self)
+    }
+
+
 }
 
 extension AllCommentsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allComment.count
+        return 10
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: allCommentCellID, for: indexPath) as! AllComentsTableViewCell
-        cell.comment = allComment[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: allCommentCellID, for: indexPath) as! AllCommentTableViewCell
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            cell.comment = self.comments[indexPath.row]
+        }
         return cell
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
