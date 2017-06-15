@@ -9,12 +9,16 @@
 import UIKit
 import Parse
 import ParseUI
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 let cellID = "wooowerCell"
 let activityViewController = "ActivityViewController"
+let profileSegueID = "ProfileViewController"
 
 class MasterViewController: UIViewController {
     
+    @IBOutlet weak var enterFB: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
     var post: [Post] = []
     var objects: [PFObject] = []
@@ -22,11 +26,28 @@ class MasterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        logoutButton()
+    }
+    
+    func logoutButton () {
+        if FBSDKAccessToken.current() != nil {
+            enterFB.title = "Log out"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(addTapped))
+        }
+    }
+    
+    func addTapped() {
+        performSegue(withIdentifier: profileSegueID, sender: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         fetchPosts()
 //        self.myTableView.reloadData()
+    }
+    
+    
+    @IBAction func facebookLoginForm(_ sender: UIBarButtonItem) {
+        FetchingFBData.sharedInstance.loginUser(sender: self)
     }
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {

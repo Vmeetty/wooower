@@ -161,19 +161,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Events feed" id="FzX-DL-dkd">
-                        <barButtonItem key="leftBarButtonItem" title="Sign in" id="9bo-an-2zJ">
+                        <barButtonItem key="leftBarButtonItem" title="Enter with Fb" id="9bo-an-2zJ">
                             <connections>
-                                <action selector="showLoginFormAction:" destination="BYZ-38-t0r" id="zwi-rN-R59"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Profile" id="dnc-3C-seI">
-                            <connections>
-                                <segue destination="JbC-SP-gMu" kind="show" id="nNz-pg-apH"/>
+                                <action selector="facebookLoginForm:" destination="BYZ-38-t0r" id="Cq6-Qx-dvC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="enterFB" destination="9bo-an-2zJ" id="bDZ-Gv-52k"/>
                         <outlet property="myTableView" destination="H10-Av-fBa" id="v5K-qg-AeZ"/>
+                        <segue destination="JbC-SP-gMu" kind="show" identifier="ProfileViewController" id="JWy-Pr-fgL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

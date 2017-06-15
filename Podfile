@@ -7,5 +7,7 @@ target 'Wooower' do
 
 pod ‘Parse’
 pod ‘ParseUI’
-
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
 end
