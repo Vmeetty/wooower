@@ -27,7 +27,15 @@ class AllCommentsViewController: UIViewController {
     }
     
     func configView () {
-        ConfigCommentView.sharedInstance.configComments(activity: activityItem, sender: self)
+//        ConfigCommentView.sharedInstance.configComments(activity: activityItem, sender: self)
+        ConfigCommentView.sharedInstance.configComments2(activity: activityItem,
+                                                         runQueue: DispatchQueue.global(qos: .userInitiated),
+                                                         complitionQueue: DispatchQueue.main) { (comment, error) in
+                                                            if let comment = comment {
+                                                                self.comments.append(comment)
+                                                            }
+                                                            
+        }
     }
 
 

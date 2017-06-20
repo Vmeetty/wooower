@@ -16,6 +16,16 @@ class CommentsTableViewCell: UITableViewCell {
     @IBOutlet weak var commentNameLabel: UILabel!
     @IBOutlet weak var commentTextLabel: UILabel!
 
+    var object: PFObject? {
+        didSet {
+            ConfigCommentView.sharedInstance.configComments2(activity: object, runQueue: DispatchQueue.global(qos: .userInitiated), complitionQueue: DispatchQueue.main) { (comment, error) in
+                if let comment = comment {
+                    self.commentNameLabel.text = comment.name
+                    self.commentTextLabel.text = comment.text
+                }
+            }
+        }
+    }
     var comment: Comment? {
         didSet {
            configCommentCell()

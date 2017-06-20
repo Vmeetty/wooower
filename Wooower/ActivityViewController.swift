@@ -50,7 +50,16 @@ class ActivityViewController: UIViewController {
     
     func configView () {
         ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
-        ConfigCommentView.sharedInstance.configComments(activity: activityItem, sender: self)
+//        ConfigCommentView.sharedInstance.configComments(activity: activityItem, sender: self)
+//        ConfigCommentView.sharedInstance.configComments2(activity: activityItem,
+//                                                         runQueue: DispatchQueue.global(qos: .userInitiated),
+//                                                         complitionQueue: DispatchQueue.main) { (comment, error) in
+//                                                            if let comment = comment {
+//                                                                self.comments.append(comment)
+//                                                            }
+//                                                            
+//        }
+
     }
     
     func observKeybordView () {
@@ -114,9 +123,10 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: commentCellID, for: indexPath) as! CommentsTableViewCell
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            cell.comment = self.comments[indexPath.row]
-        }
+        cell.object = activityItem
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//            cell.comment = self.comments[indexPath.row]
+//        }
         
         
         return cell

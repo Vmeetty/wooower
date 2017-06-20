@@ -86,7 +86,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xwe-T9-NxJ" id="2IF-J4-Vk3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="131"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVz-Xh-eMD">
@@ -489,11 +489,16 @@
                                                     <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0ft-wv-bEH">
+                                                    <rect key="frame" x="177" y="28" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="0jK-Nb-AdR" firstAttribute="leading" secondItem="FQj-Ji-zHI" secondAttribute="leadingMargin" constant="8" id="Fvo-rX-6LS"/>
                                                 <constraint firstItem="4Ar-aU-12X" firstAttribute="trailing" secondItem="FQj-Ji-zHI" secondAttribute="trailingMargin" id="JGD-WK-e91"/>
                                                 <constraint firstItem="0jK-Nb-AdR" firstAttribute="centerY" secondItem="FQj-Ji-zHI" secondAttribute="centerY" id="MB0-rd-zMy"/>
+                                                <constraint firstItem="0ft-wv-bEH" firstAttribute="centerY" secondItem="FQj-Ji-zHI" secondAttribute="centerY" id="NlL-Zj-g4E"/>
+                                                <constraint firstItem="0ft-wv-bEH" firstAttribute="centerX" secondItem="FQj-Ji-zHI" secondAttribute="centerX" id="amw-ky-Vdm"/>
                                                 <constraint firstItem="Z6M-z0-vpb" firstAttribute="trailing" secondItem="FQj-Ji-zHI" secondAttribute="trailingMargin" id="gnp-cq-oSp"/>
                                                 <constraint firstItem="4Ar-aU-12X" firstAttribute="top" secondItem="Z6M-z0-vpb" secondAttribute="bottom" constant="2" id="ier-hF-FJ7"/>
                                                 <constraint firstItem="Z6M-z0-vpb" firstAttribute="top" secondItem="FQj-Ji-zHI" secondAttribute="topMargin" constant="5" id="qKn-XL-zUV"/>
@@ -762,7 +767,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="343" height="61"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ixq-vL-O3p" id="TQo-DI-Hv4">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="61"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPE-nl-egN">
