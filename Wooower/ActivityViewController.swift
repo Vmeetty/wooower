@@ -29,7 +29,7 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var avatarView: UIView!    
     @IBOutlet weak var buttomCommentViewConstraint: NSLayoutConstraint!
     
-    var comments: [Comment] = []
+    var comments: [Comment]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,16 +50,14 @@ class ActivityViewController: UIViewController {
     
     func configView () {
         ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
-//        ConfigCommentView.sharedInstance.configComments(activity: activityItem, sender: self)
-//        ConfigCommentView.sharedInstance.configComments2(activity: activityItem,
-//                                                         runQueue: DispatchQueue.global(qos: .userInitiated),
-//                                                         complitionQueue: DispatchQueue.main) { (comment, error) in
-//                                                            if let comment = comment {
-//                                                                self.comments.append(comment)
-//                                                            }
-//                                                            
-//        }
-
+        ConfigCommentView.sharedInstance.configComments3(activity: activityItem,
+                                                         runQueue: DispatchQueue.global(qos: .userInitiated),
+                                                         complitionQueue: DispatchQueue.main) { (commentsArray, error) in
+                                                            if let comments = commentsArray {
+                                                                self.comments = comments
+                                                            }
+        }
+        
     }
     
     func observKeybordView () {
@@ -123,12 +121,9 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: commentCellID, for: indexPath) as! CommentsTableViewCell
-        cell.object = activityItem
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            cell.comment = self.comments[indexPath.row]
-//        }
-        
-        
+        if let comments = self.comments {
+            cell.comment = comments[indexPath.row]
+        }
         return cell
     }
     

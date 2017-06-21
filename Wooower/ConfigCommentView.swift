@@ -15,10 +15,10 @@ class ConfigCommentView {
     static let sharedInstance = ConfigCommentView()
     private init () {}
     
-    func configComments2 (activity: PFObject?,
+    func configComments3 (activity: PFObject?,
                           runQueue: DispatchQueue,
                           complitionQueue: DispatchQueue,
-                          complition: @escaping (Comment?, Error?) -> ()) {
+                          complition: @escaping ([Comment]?, Error?) -> ()) {
         
         let commentRelation = activity?.relation(forKey: "comments")
         let query = commentRelation?.query()
@@ -27,12 +27,14 @@ class ConfigCommentView {
         runQueue.async {
             do {
                 if let objects = try query?.findObjects() {
+                    var commentsArray: [Comment] = []
                     objects.forEach({ (obj) in
                         if let userName = (obj["user"] as? PFUser)?.username {
                             let text = obj["text"] as! String
                             let comment = Comment(name: userName, text: text)
+                            commentsArray.append(comment)
                             complitionQueue.async {
-                                complition(comment, nil)
+                                complition(commentsArray, nil)
                             }
                         }
                     })
@@ -43,30 +45,62 @@ class ConfigCommentView {
                 }
             }
         }
-        
     }
-    
-    func configComments (activity: PFObject?, sender: Any) {
-        let commentRelation = activity?.relation(forKey: "comments")
-        let query = commentRelation?.query()
-        query?.includeKey("user")
-        query?.order(byAscending: "createdAt")
-        query?.findObjectsInBackground(block: { (comments, error) in
-            if let objects = comments {
-                objects.forEach({ (obj) in
-                    if let userName = (obj["user"] as? PFUser)?.username {
-                        if let controller = sender as? AllCommentsViewController {
-                            let comment = Comment(name: userName, text: (obj["text"] as! String))
-                            controller.comments.append(comment)
-                        }
-                        if let controller = sender as? ActivityViewController {
-                            let comment = Comment(name: userName, text: (obj["text"] as! String))
-                            controller.comments.append(comment)
-                        }
-                    }
-                })
-            }
-        })
-    }
-    
+
 }
+
+//    func configComments2 (activity: PFObject?,
+//                          runQueue: DispatchQueue,
+//                          complitionQueue: DispatchQueue,
+//                          complition: @escaping (Comment?, Error?) -> ()) {
+//        
+//        let commentRelation = activity?.relation(forKey: "comments")
+//        let query = commentRelation?.query()
+//        query?.includeKey("user")
+//        query?.order(byAscending: "createdAt")
+//        runQueue.async {
+//            do {
+//                if let objects = try query?.findObjects() {
+//                    objects.forEach({ (obj) in
+//                        if let userName = (obj["user"] as? PFUser)?.username {
+//                            let text = obj["text"] as! String
+//                            let comment = Comment(name: userName, text: text)
+//                            complitionQueue.async {
+//                                complition(comment, nil)
+//                            }
+//                        }
+//                    })
+//                }
+//            } catch let error {
+//                complitionQueue.async {
+//                    complition(nil, error)
+//                }
+//            }
+//        }
+//        
+//    }
+    
+//    func configComments (activity: PFObject?, sender: Any) {
+//        let commentRelation = activity?.relation(forKey: "comments")
+//        let query = commentRelation?.query()
+//        query?.includeKey("user")
+//        query?.order(byAscending: "createdAt")
+//        query?.findObjectsInBackground(block: { (comments, error) in
+//            if let objects = comments {
+//                objects.forEach({ (obj) in
+//                    if let userName = (obj["user"] as? PFUser)?.username {
+//                        if let controller = sender as? AllCommentsViewController {
+//                            let comment = Comment(name: userName, text: (obj["text"] as! String))
+//                            controller.comments.append(comment)
+//                        }
+//                        if let controller = sender as? ActivityViewController {
+//                            let comment = Comment(name: userName, text: (obj["text"] as! String))
+//                            controller.comments.append(comment)
+//                        }
+//                    }
+//                })
+//            }
+//        })
+//    }
+    
+

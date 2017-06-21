@@ -18,7 +18,7 @@ class AllCommentsViewController: UIViewController {
             configView ()
         }
     }
-    var comments: [Comment] = []
+    var comments: [Comment]?
     
     @IBOutlet weak var myTableView: UITableView!
     override func viewDidLoad() {
@@ -27,14 +27,12 @@ class AllCommentsViewController: UIViewController {
     }
     
     func configView () {
-//        ConfigCommentView.sharedInstance.configComments(activity: activityItem, sender: self)
-        ConfigCommentView.sharedInstance.configComments2(activity: activityItem,
+        ConfigCommentView.sharedInstance.configComments3(activity: activityItem,
                                                          runQueue: DispatchQueue.global(qos: .userInitiated),
-                                                         complitionQueue: DispatchQueue.main) { (comment, error) in
-                                                            if let comment = comment {
-                                                                self.comments.append(comment)
+                                                         complitionQueue: DispatchQueue.main) { (commentsArray, error) in
+                                                            if let comments = commentsArray {
+                                                                self.comments = comments
                                                             }
-                                                            
         }
     }
 
@@ -44,12 +42,16 @@ class AllCommentsViewController: UIViewController {
 extension AllCommentsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        var numberOfRows = 0
+        if let comments = comments {
+            numberOfRows = comments.count
+        }
+        return numberOfRows
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: allCommentCellID, for: indexPath) as! AllCommentTableViewCell
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            cell.comment = self.comments[indexPath.row]
+        if let comments = self.comments {
+            cell.comment = comments[indexPath.row]
         }
         return cell
     }
