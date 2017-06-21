@@ -18,16 +18,19 @@ class AllCommentsViewController: UIViewController {
             configView ()
         }
     }
-    var comments: [Comment]?
-    
     @IBOutlet weak var myTableView: UITableView!
+    var comments: [Comment]? = [] {
+        didSet {
+            myTableView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
     }
     
     func configView () {
-        ConfigCommentView.sharedInstance.configComments3(activity: activityItem,
+        ConfigCommentView.sharedInstance.configComments(activity: activityItem,
                                                          runQueue: DispatchQueue.global(qos: .userInitiated),
                                                          complitionQueue: DispatchQueue.main) { (commentsArray, error) in
                                                             if let comments = commentsArray {
@@ -42,11 +45,7 @@ class AllCommentsViewController: UIViewController {
 extension AllCommentsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numberOfRows = 0
-        if let comments = comments {
-            numberOfRows = comments.count
-        }
-        return numberOfRows
+        return comments!.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: allCommentCellID, for: indexPath) as! AllCommentTableViewCell

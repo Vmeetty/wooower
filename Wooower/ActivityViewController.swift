@@ -29,7 +29,12 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var avatarView: UIView!    
     @IBOutlet weak var buttomCommentViewConstraint: NSLayoutConstraint!
     
-    var comments: [Comment]?
+    var comments: [Comment]? = [] {
+        didSet {
+            myCommentTableView.reloadData()
+            myCommentTableView.isHidden = false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +42,7 @@ class ActivityViewController: UIViewController {
         scrollView.keyboardDismissMode = .onDrag
         gestureRecognize()
         observKeybordView()
+        myCommentTableView.isHidden = true
     }
     
     func gestureRecognize () {
@@ -49,8 +55,9 @@ class ActivityViewController: UIViewController {
     }
     
     func configView () {
+        
         ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
-        ConfigCommentView.sharedInstance.configComments3(activity: activityItem,
+        ConfigCommentView.sharedInstance.configComments(activity: activityItem,
                                                          runQueue: DispatchQueue.global(qos: .userInitiated),
                                                          complitionQueue: DispatchQueue.main) { (commentsArray, error) in
                                                             if let comments = commentsArray {
@@ -111,13 +118,19 @@ class ActivityViewController: UIViewController {
         }
     }
     
-
 }
 
 extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if let comments = comments {
+            if comments.count > 3 {
+                return 3
+            } else {
+                return comments.count
+            }
+        }
+        return comments!.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: commentCellID, for: indexPath) as! CommentsTableViewCell
