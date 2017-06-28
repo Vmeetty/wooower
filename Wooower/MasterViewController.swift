@@ -11,12 +11,13 @@ import Parse
 import ParseUI
 import FBSDKLoginKit
 import FBSDKCoreKit
+import ParseFacebookUtilsV4
 
 let cellID = "wooowerCell"
 let activityViewController = "ActivityViewController"
 let profileSegueID = "ProfileViewController"
 
-class MasterViewController: UIViewController {
+class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     @IBOutlet weak var enterFB: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
@@ -26,35 +27,46 @@ class MasterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        logoutButton()
+        
     }
     
-    func logoutButton () {
-        if FBSDKAccessToken.current() != nil {
-            enterFB.title = "Log out"
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(addTapped))
+    func displayProfileButton () {
+        if PFUser.current() == nil {
+            enterFB.title = "Enter"
+        } else {
+            let exitButton = UIBarButtonItem(title: "Exit", style: .plain, target: self, action: #selector(lofOut))
+            navigationItem.leftBarButtonItem = exitButton
+            enterFB.title = "Profile"
         }
     }
-    
-    func addTapped() {
-        performSegue(withIdentifier: profileSegueID, sender: self)
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        fetchPosts()
-//        self.myTableView.reloadData()
+    func lofOut () {
+        // logout code
+        PFUser.logOut()
+        enterFB.title = "Enter"
+        navigationItem.leftBarButtonItem = nil
+        
     }
     
-    
-    @IBAction func facebookLoginForm(_ sender: UIBarButtonItem) {
-        FetchingFBData.sharedInstance.loginUser(sender: self)
+    override func viewWillAppear(_ animated: Bool) {
+        displayProfileButton()
+        fetchPosts()
+        self.myTableView.reloadData()
     }
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
-        let login = PFLogInViewController()
-        present(login, animated: true) {
+        if PFUser.current() == nil {
+            FetchingFBData.sharedInstance.loginUser2(sender: self)
+//            let loginViewController = PFLogInViewController()
+//            loginViewController.fields = .facebook
+//            loginViewController.facebookPermissions = ["public_profile"]
+//            loginViewController.delegate = self
+//            self.present(loginViewController, animated: true, completion: nil)
+            
+        } else {
+            performSegue(withIdentifier: profileSegueID, sender: self)
         }
-    
+        
     }
     
     @IBAction func createAction(_ sender: UIButton) {
@@ -76,6 +88,12 @@ class MasterViewController: UIViewController {
                     activityVC.activityItem = object
                 }
             }
+        }
+    }
+    
+    func log(_ logInController: PFLogInViewController, didLogIn user: PFUser) {
+        logInController.dismiss(animated: true) {
+            self.myTableView.reloadData()
         }
     }
 
@@ -112,19 +130,26 @@ extension MasterViewController {
                 self.objects = objects
                 self.post = objects.map({ (post) -> Post in
                     // fetch user for post
-                    var userName = ""
+                    var name = ""
                     if let user = post["user"] as? PFUser {
                         // ** Использовать fetchIfNeededInBackground()
+//                        user.fetchIfNeededInBackground(block: { (object, error) in
+//                            if let user = object as? PFUser {
+//                                if let userName = user.username {
+//                                    name = userName
+//                                }
+//                            }
+//                        })
                         do {
                             let u = try user.fetchIfNeeded()
                             if let username = u.username {
-                                userName = username
+                                name = username
                             }
                         }catch {
                             print("There was no data about user.username. *Vlad")
                         }
                     }
-                    let post = Post(name: userName, description: post["descriptions"] as! String)
+                    let post = Post(name: name, description: post["descriptions"] as! String)
                     return post
                 })
                 self.myTableView.reloadData()

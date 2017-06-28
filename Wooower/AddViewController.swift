@@ -36,10 +36,6 @@ class AddViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        view.endEditing(true)
-//    }
-    
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -82,8 +78,7 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
             })
             
         }
-        picker.dismiss(animated: true, completion: nil)
-        
+        picker.dismiss(animated: true, completion: nil)       
         descriptionTextView.becomeFirstResponder()
     }
 }

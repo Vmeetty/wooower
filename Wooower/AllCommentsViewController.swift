@@ -39,7 +39,6 @@ class AllCommentsViewController: UIViewController {
         }
     }
 
-
 }
 
 extension AllCommentsViewController: UITableViewDataSource, UITableViewDelegate {

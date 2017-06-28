@@ -10,4 +10,5 @@ pod ‘ParseUI’
 pod 'FacebookCore'
 pod 'FacebookLogin'
 pod 'FacebookShare'
+pod 'ParseFacebookUtilsV4'
 end

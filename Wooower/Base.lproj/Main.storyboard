@@ -86,13 +86,13 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xwe-T9-NxJ" id="2IF-J4-Vk3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVz-Xh-eMD">
                                                     <rect key="frame" x="8" y="21" width="80" height="80"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me" translatesAutoresizingMaskIntoConstraints="NO" id="TMa-Rd-Ye0">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="123" translatesAutoresizingMaskIntoConstraints="NO" id="TMa-Rd-Ye0">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                         </imageView>
                                                     </subviews>
@@ -161,9 +161,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Events feed" id="FzX-DL-dkd">
-                        <barButtonItem key="leftBarButtonItem" title="Enter with Fb" id="9bo-an-2zJ">
+                        <barButtonItem key="rightBarButtonItem" title="Enter with Fb" id="9bo-an-2zJ">
                             <connections>
-                                <action selector="facebookLoginForm:" destination="BYZ-38-t0r" id="Cq6-Qx-dvC"/>
+                                <action selector="showLoginFormAction:" destination="BYZ-38-t0r" id="PDK-rE-MwL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -285,7 +285,7 @@
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXj-pF-nWB">
                                                                     <rect key="frame" x="0.0" y="5" width="50" height="50"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="me" translatesAutoresizingMaskIntoConstraints="NO" id="geV-JE-Vbm">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="123" translatesAutoresizingMaskIntoConstraints="NO" id="geV-JE-Vbm">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
@@ -457,13 +457,13 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zel-Y0-TFT" id="FQj-Ji-zHI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0jK-Nb-AdR">
                                                     <rect key="frame" x="16" y="13" width="50" height="50"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ufs-Sa-0OJ">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="123" translatesAutoresizingMaskIntoConstraints="NO" id="Ufs-Sa-0OJ">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         </imageView>
                                                     </subviews>
@@ -676,7 +676,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9W-br-5cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2094" y="964"/>
+            <point key="canvasLocation" x="2092" y="883"/>
         </scene>
         <!--Activity-->
         <scene sceneID="a7I-F8-LTT">
@@ -762,13 +762,13 @@
                                                         <rect key="frame" x="0.0" y="28" width="343" height="61"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ixq-vL-O3p" id="TQo-DI-Hv4">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="61"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPE-nl-egN">
                                                                     <rect key="frame" x="0.0" y="5" width="50" height="50"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="me" translatesAutoresizingMaskIntoConstraints="NO" id="JH4-X3-30X">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="123" translatesAutoresizingMaskIntoConstraints="NO" id="JH4-X3-30X">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         </imageView>
@@ -923,7 +923,6 @@
     </scenes>
     <resources>
         <image name="123" width="310" height="198"/>
-        <image name="me" width="493" height="493"/>
         <image name="send-2" width="16" height="16"/>
     </resources>
 </document>

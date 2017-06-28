@@ -21,13 +21,11 @@ class AllCommentTableViewCell: UITableViewCell {
         }
     }
     
-    
     func configCommentCell () {
         commentNameLabel.text = comment?.name
         commentTextLabel.text = comment?.text
     }
-    
-    
+      
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -7,10 +7,14 @@
         <dict>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>fb288762308194067</string>
+                <string>fb118684255404262</string>
             </array>
         </dict>
     </array>
+    <key>FacebookAppID</key>
+    <string>118684255404262</string>
+    <key>FacebookDisplayName</key>
+    <string>Woower</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
         <string>fbapi</string>
@@ -18,10 +22,6 @@
         <string>fbauth2</string>
         <string>fbshareextension</string>
     </array>
-    <key>FacebookAppID</key>
-    <string>288762308194067</string>
-    <key>FacebookDisplayName</key>
-    <string>Woower</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>add picture to post</string>
 	<key>CFBundleDevelopmentRegion</key>
