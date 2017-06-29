@@ -56,13 +56,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
         if PFUser.current() == nil {
-            FetchingFBData.sharedInstance.loginUser2(sender: self)
-//            let loginViewController = PFLogInViewController()
-//            loginViewController.fields = .facebook
-//            loginViewController.facebookPermissions = ["public_profile"]
-//            loginViewController.delegate = self
-//            self.present(loginViewController, animated: true, completion: nil)
-            
+            LogInAndAddToData.sharedInstance.loginUser3(sender: self)
         } else {
             performSegue(withIdentifier: profileSegueID, sender: self)
         }

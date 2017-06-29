@@ -12,7 +12,7 @@
 		F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */; };
 		F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */; };
 		F52A50AC1EEAA10800B4BA1C /* ConfigCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */; };
-		F530B5001EF290210025D8BB /* FetchingFBData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530B4FF1EF290210025D8BB /* FetchingFBData.swift */; };
+		F530B5001EF290210025D8BB /* LogInAndAddToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */; };
 		F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */; };
 		F530DD821EDEE81700A4E235 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530DD811EDEE81700A4E235 /* MasterViewController.swift */; };
 		F530DD851EDEE81800A4E235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD831EDEE81800A4E235 /* Main.storyboard */; };
@@ -40,7 +40,7 @@
 		F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigActivityView.swift; sourceTree = "<group>"; };
 		F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCommentView.swift; sourceTree = "<group>"; };
-		F530B4FF1EF290210025D8BB /* FetchingFBData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchingFBData.swift; sourceTree = "<group>"; };
+		F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInAndAddToData.swift; sourceTree = "<group>"; };
 		F530DD7C1EDEE81700A4E235 /* Wooower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wooower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F530DD811EDEE81700A4E235 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 				F52A50A51EEA90CF00B4BA1C /* Comment.swift */,
 				F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */,
 				F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */,
-				F530B4FF1EF290210025D8BB /* FetchingFBData.swift */,
+				F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */,
 				F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */,
 				F54BFDD11F01029B008A9CAC /* EditDataBase.swift */,
 				F5CCB53A1EE0077E00B0F030 /* Fetching.swift */,
@@ -290,7 +290,7 @@
 				F5A5051C1EEFE4B300F7D219 /* AllCommentsViewController.swift in Sources */,
 				F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */,
 				F5DA0FE81EE57B1B00E8ED97 /* KeyboardSize.swift in Sources */,
-				F530B5001EF290210025D8BB /* FetchingFBData.swift in Sources */,
+				F530B5001EF290210025D8BB /* LogInAndAddToData.swift in Sources */,
 				F5DA0FE61EE56AE300E8ED97 /* PickerConfig.swift in Sources */,
 				F536C5281EE69F1400B3BF1C /* ActivityViewController.swift in Sources */,
 				F52A50AC1EEAA10800B4BA1C /* ConfigCommentView.swift in Sources */,
