@@ -16,26 +16,6 @@ class LogInAndAddToData {
     static let sharedInstance = LogInAndAddToData()
     private init() {}
     
-    
-    
-    func fetchingFbData3 () {
-        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
-        request?.start(completionHandler: { (connection, result, error) in
-            if ((error) != nil){
-                // Process error
-                print("Error: \(error)")
-            }else if let result = result as? Dictionary<String, Any> {
-                print("fetched user: \(result)")
-                let userName : NSString = result["name"] as! NSString
-                print("User Name is: \(userName)")
-                let id : NSString = result["id"] as! NSString
-                print("User id is: \(id)")
-                let picture : NSString = result["picture"] as! NSString
-                print("User picture is: \(picture)")
-            }
-        })
-    }
-    
     func loginUser3 (sender: Any) {
         PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "user_friends", "email"], block: { (result, error) in
             if let user = result {
@@ -44,22 +24,52 @@ class LogInAndAddToData {
                 } else {
                     print("User logged in through Facebook!")
                 }
-                self.fetchingFbData3()
+//                self.fetchingFbData3(pfUser: user)
             } else {
                 print("Uh oh. The user cancelled the Facebook login.")
             }
         })
-//        let loginViewController = PFLogInViewController()
-//        loginViewController.fields = [.facebook]
-//        loginViewController.facebookPermissions = ["public_profile"]
-//        loginViewController.delegate = sender
-//        self.present(loginViewController, animated: true, completion: nil)
+    }
+    
+    func fetchingFbData3 (pfUser: PFUser, sender: Any) {
+        let manager = FBSDKLoginManager()
+        if let sender = sender as? MasterViewController {
+            manager.logIn(withReadPermissions: [], from: sender) { (result, error) in
+                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
+                request?.start(completionHandler: { (connection, result, error) in
+                    if ((error) != nil){
+                        // Process error
+                        print("Error: \(error)")
+                    }else if let result = result as? Dictionary<String, Any> {
+                        print("fetched user: \(result)")
+                        let userName : NSString = result["name"] as! NSString
+                        print("User Name is: \(userName)")
+                        pfUser["username"] = userName
+                        pfUser.password = userName as String
+                        pfUser["fbName"] = userName
+                        let id : NSString = result["id"] as! NSString
+                        print("User id is: \(id)")
+                        pfUser.signUpInBackground(block: { (succes, error) in
+                            print("user saved")
+                        })
+                    }
+                })
+            }
+        }
+        
+        
     }
     
     
     
     
     
+    
+    //    let loginViewController = PFLogInViewController()
+    //        loginViewController.fields = [.facebook]
+    //        loginViewController.facebookPermissions = ["public_profile"]
+    //        loginViewController.delegate = sender
+    //        self.present(loginViewController, animated: true, completion: nil)
     
     
     
@@ -121,3 +131,4 @@ class LogInAndAddToData {
     }
     
 }
+
