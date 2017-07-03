@@ -16,42 +16,19 @@ class LogInAndAddToData {
     static let sharedInstance = LogInAndAddToData()
     private init() {}
     
-    func loginUser3 (sender: Any) {
-        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "user_friends", "email"], block: { (result, error) in
-            if let user = result {
-                if user.isNew {
-                    print("User signed up and logged in through Facebook!")
-                } else {
-                    print("User logged in through Facebook!")
-                }
-//                self.fetchingFbData3(pfUser: user)
-            } else {
-                print("Uh oh. The user cancelled the Facebook login.")
-            }
-        })
-    }
+    var file: PFFile?
     
     func fetchingFbData3 (pfUser: PFUser, sender: Any) {
         let manager = FBSDKLoginManager()
         if let sender = sender as? MasterViewController {
-            manager.logIn(withReadPermissions: [], from: sender) { (result, error) in
-                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture"], httpMethod: "GET")
+            manager.logIn(withReadPermissions: ["public_profile", "user_friends", "email"], from: sender) { (result, error) in
+                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture", "user_friends": "id, name, picture"], httpMethod: "GET")
                 request?.start(completionHandler: { (connection, result, error) in
                     if ((error) != nil){
                         // Process error
                         print("Error: \(error)")
                     }else if let result = result as? Dictionary<String, Any> {
-                        print("fetched user: \(result)")
-                        let userName : NSString = result["name"] as! NSString
-                        print("User Name is: \(userName)")
-                        pfUser["username"] = userName
-                        pfUser.password = userName as String
-                        pfUser["fbName"] = userName
-                        let id : NSString = result["id"] as! NSString
-                        print("User id is: \(id)")
-                        pfUser.signUpInBackground(block: { (succes, error) in
-                            print("user saved")
-                        })
+                        self.configPFUser(pfUser: pfUser, response: result)
                     }
                 })
             }
@@ -59,6 +36,44 @@ class LogInAndAddToData {
         
         
     }
+    
+    func configPFUser (pfUser: PFUser, response: Dictionary<String, Any>) {
+        print("fetched user: \(response)")
+        // edit PFUser
+        if let picture = response["picture"] as? Dictionary<String, Any> {
+            if let data = picture["data"] as? Dictionary<String, Any> {
+                let stringUrl = data["url"] as! String
+                let data = try? Data(contentsOf: NSURL(string: stringUrl) as! URL)
+                if let data = data {
+                    let image = UIImage(data: data)
+                    if let jpegData = UIImageJPEGRepresentation(image!, 0.3) {
+                        let parseFile = PFFile(data: jpegData, contentType: "jpg")
+                        self.file = parseFile
+                        parseFile.saveInBackground(block: { (succes, error) in
+                            print("upload " + (succes ? "succes" : "error"))
+                            let userName : NSString = response["name"] as! NSString
+                            pfUser["username"] = userName
+                            pfUser.password = userName as String
+                            pfUser["fbName"] = userName
+                            let id : NSString = response["id"] as! NSString
+                            pfUser["fbID"] = id
+                            pfUser["fbPhoto"] = self.file
+                            pfUser.signUpInBackground(block: { (succes, error) in
+                                if succes {
+                                    print("sined up")
+                                } else {
+                                    print("you have error")
+                                }
+                            })
+                        })
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    
     
     
     
@@ -70,6 +85,24 @@ class LogInAndAddToData {
     //        loginViewController.facebookPermissions = ["public_profile"]
     //        loginViewController.delegate = sender
     //        self.present(loginViewController, animated: true, completion: nil)
+    
+    func loginUser3 () {
+        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "user_friends", "email"], block: { (result, error) in
+            if let user = result {
+                if user.isNew {
+                    print("User signed up and logged in through Facebook!")
+                } else {
+                    print("User logged in through Facebook!")
+                }
+                //                self.fetchingFbData3(pfUser: user)
+            } else {
+                print("Uh oh. The user cancelled the Facebook login.")
+            }
+        })
+    }
+    
+    
+
     
     
     

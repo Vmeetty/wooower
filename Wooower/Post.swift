@@ -12,12 +12,12 @@ import UIKit
 class Post {
 
     var name: String
-//    var avatarImage: UIImage
+    var userPhoto: UIImage
     var description: String
     
-    init(name: String, description: String) {
+    init(name: String, description: String, photo: UIImage) {
         self.name = name
-//        self.avatarImage = avatarImage
+        userPhoto = photo
         self.description = description
     }
     

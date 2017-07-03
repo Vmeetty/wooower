@@ -23,10 +23,10 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     @IBOutlet weak var myTableView: UITableView!
     var post: [Post] = []
     var objects: [PFObject] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     
@@ -39,7 +39,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
             enterFB.title = "Profile"
         }
     }
-
+    
     func lofOut () {
         // logout code
         PFUser.logOut()
@@ -56,7 +56,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
         if PFUser.current() == nil {
-//            LogInAndAddToData.sharedInstance.loginUser3(sender: self)
+            //            LogInAndAddToData.sharedInstance.loginUser3(sender: self)
             let pfUser = PFUser()
             LogInAndAddToData.sharedInstance.fetchingFbData3(pfUser: pfUser, sender: self)
         } else {
@@ -92,13 +92,13 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
             self.myTableView.reloadData()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
 extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
@@ -127,25 +127,24 @@ extension MasterViewController {
                 self.post = objects.map({ (post) -> Post in
                     // fetch user for post
                     var name = ""
+                    var photo: UIImage?
                     if let user = post["user"] as? PFUser {
                         // ** Использовать fetchIfNeededInBackground()
-//                        user.fetchIfNeededInBackground(block: { (object, error) in
-//                            if let user = object as? PFUser {
-//                                if let userName = user.username {
-//                                    name = userName
-//                                }
-//                            }
-//                        })
                         do {
                             let u = try user.fetchIfNeeded()
                             if let username = u.username {
                                 name = username
+                                if let userPhoto = u["fbPhoto"] as? PFFile {
+                                    userPhoto.getDataInBackground(block: { (data, error) in
+                                        photo = UIImage(data: data!)
+                                    })
+                                }
                             }
                         }catch {
                             print("There was no data about user.username. *Vlad")
                         }
                     }
-                    let post = Post(name: name, description: post["descriptions"] as! String)
+                    let post = Post(name: name, description: post["descriptions"] as! String, photo: photo!)
                     return post
                 })
                 self.myTableView.reloadData()
