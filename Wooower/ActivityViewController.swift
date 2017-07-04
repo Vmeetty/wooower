@@ -28,6 +28,7 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var avatarView: UIView!    
     @IBOutlet weak var buttomCommentViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var userPhotoImageView: UIImageView!
     
     var comments: [Comment]? = [] {
         didSet {

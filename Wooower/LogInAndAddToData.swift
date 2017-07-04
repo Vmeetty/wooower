@@ -22,7 +22,7 @@ class LogInAndAddToData {
         let manager = FBSDKLoginManager()
         if let sender = sender as? MasterViewController {
             manager.logIn(withReadPermissions: ["public_profile", "user_friends", "email"], from: sender) { (result, error) in
-                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture", "user_friends": "id, name, picture"], httpMethod: "GET")
+                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large)", "user_friends": "id, name, picture"], httpMethod: "GET")
                 request?.start(completionHandler: { (connection, result, error) in
                     if ((error) != nil){
                         // Process error

@@ -26,7 +26,7 @@
 		F5A5051E1EEFE6C500F7D219 /* AllCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */; };
 		F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5331EDFFFAB00B0F030 /* Post.swift */; };
 		F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5351EE005E000B0F030 /* TableViewCell.swift */; };
-		F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB53A1EE0077E00B0F030 /* Fetching.swift */; };
+		F5CCB53B1EE0077E00B0F030 /* FetchingPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB53A1EE0077E00B0F030 /* FetchingPosts.swift */; };
 		F5DA0FE61EE56AE300E8ED97 /* PickerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DA0FE51EE56AE300E8ED97 /* PickerConfig.swift */; };
 		F5DA0FE81EE57B1B00E8ED97 /* KeyboardSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DA0FE71EE57B1B00E8ED97 /* KeyboardSize.swift */; };
 		F5DA0FEA1EE57E6900E8ED97 /* ObservKeybordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DA0FE91EE57E6900E8ED97 /* ObservKeybordView.swift */; };
@@ -56,7 +56,7 @@
 		F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCommentTableViewCell.swift; sourceTree = "<group>"; };
 		F5CCB5331EDFFFAB00B0F030 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F5CCB5351EE005E000B0F030 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		F5CCB53A1EE0077E00B0F030 /* Fetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetching.swift; sourceTree = "<group>"; };
+		F5CCB53A1EE0077E00B0F030 /* FetchingPosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchingPosts.swift; sourceTree = "<group>"; };
 		F5DA0FE51EE56AE300E8ED97 /* PickerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerConfig.swift; sourceTree = "<group>"; };
 		F5DA0FE71EE57B1B00E8ED97 /* KeyboardSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardSize.swift; sourceTree = "<group>"; };
 		F5DA0FE91EE57E6900E8ED97 /* ObservKeybordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservKeybordView.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 				F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */,
 				F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */,
 				F54BFDD11F01029B008A9CAC /* EditDataBase.swift */,
-				F5CCB53A1EE0077E00B0F030 /* Fetching.swift */,
+				F5CCB53A1EE0077E00B0F030 /* FetchingPosts.swift */,
 				F5DA0FE51EE56AE300E8ED97 /* PickerConfig.swift */,
 				F5DA0FE71EE57B1B00E8ED97 /* KeyboardSize.swift */,
 				F5DA0FE91EE57E6900E8ED97 /* ObservKeybordView.swift */,
@@ -288,7 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5A5051C1EEFE4B300F7D219 /* AllCommentsViewController.swift in Sources */,
-				F5CCB53B1EE0077E00B0F030 /* Fetching.swift in Sources */,
+				F5CCB53B1EE0077E00B0F030 /* FetchingPosts.swift in Sources */,
 				F5DA0FE81EE57B1B00E8ED97 /* KeyboardSize.swift in Sources */,
 				F530B5001EF290210025D8BB /* LogInAndAddToData.swift in Sources */,
 				F5DA0FE61EE56AE300E8ED97 /* PickerConfig.swift in Sources */,

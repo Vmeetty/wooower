@@ -50,13 +50,11 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         displayProfileButton()
-        fetchPosts()
-        self.myTableView.reloadData()
+        fetchPosts2()
     }
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
         if PFUser.current() == nil {
-            //            LogInAndAddToData.sharedInstance.loginUser3(sender: self)
             let pfUser = PFUser()
             LogInAndAddToData.sharedInstance.fetchingFbData3(pfUser: pfUser, sender: self)
         } else {
@@ -119,38 +117,41 @@ extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
 
 extension MasterViewController {
     
-    func fetchPosts () {
+    
+    func fetchPosts2 () {
         let query = PFQuery(className: "Post")
-        query.findObjectsInBackground { (objects, error) in
-            if let objects = objects {
-                self.objects = objects
-                self.post = objects.map({ (post) -> Post in
-                    // fetch user for post
-                    var name = ""
-                    var photo: UIImage?
-                    if let user = post["user"] as? PFUser {
-                        // ** Использовать fetchIfNeededInBackground()
-                        do {
-                            let u = try user.fetchIfNeeded()
-                            if let username = u.username {
-                                name = username
-                                if let userPhoto = u["fbPhoto"] as? PFFile {
-                                    userPhoto.getDataInBackground(block: { (data, error) in
-                                        photo = UIImage(data: data!)
-                                    })
-                                }
-                            }
-                        }catch {
-                            print("There was no data about user.username. *Vlad")
-                        }
+        query.includeKey("user")
+        query.order(byAscending: "createdAt")
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let objects = try query.findObjects()
+                FetchingPosts.sharedInstance.fetchPosts(objects: objects, complitionQueue: DispatchQueue.main, complition: { (posts, objects, error) in
+                    if let posts = posts, let objects = objects {
+                        self.objects = objects
+                        self.post = posts
+                        self.myTableView.reloadData()
                     }
-                    let post = Post(name: name, description: post["descriptions"] as! String, photo: photo!)
-                    return post
                 })
-                self.myTableView.reloadData()
+            } catch let error {
+                DispatchQueue.main.async {
+                    print(error)
+                }
             }
         }
+        
+        
+        /*
+        Fetching.sharedInstance.fetchPosts(query: query, runQueue: DispatchQueue.global(qos: .userInitiated), complitionQueue: DispatchQueue.main, complition: { (posts, objects, error) in
+            if let posts = posts, let objects = objects {
+                self.objects = objects
+                self.post = posts
+                self.myTableView.reloadData()
+            }
+        })
+        */
     }
+    
+    
 }
 
 
