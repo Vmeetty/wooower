@@ -24,9 +24,6 @@ class ConfigActivityView {
                     dateStr.text = "posted " + useDate
                 }
             }
-//            FetchingPosts.sharedInstance.fetchPosts(objects: [activity], complitionQueue: DispatchQueue.global(qos: .userInitiated), complition: { (posts, objects, error) in
-//                <#code#>
-//            })
             if let descriptionLabel = activityVC.descriptionLabel {
                 descriptionLabel.text = (activity["descriptions"] as! String)
                 if let user = activity["user"] as? PFUser {

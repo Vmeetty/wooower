@@ -22,13 +22,13 @@ class LogInAndAddToData {
         let manager = FBSDKLoginManager()
         if let sender = sender as? MasterViewController {
             manager.logIn(withReadPermissions: ["public_profile", "user_friends", "email"], from: sender) { (result, error) in
-                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large)", "user_friends": "id, name, picture"], httpMethod: "GET")
+                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large)"], httpMethod: "GET")
                 request?.start(completionHandler: { (connection, result, error) in
                     if ((error) != nil){
                         // Process error
                         print("Error: \(error)")
                     }else if let result = result as? Dictionary<String, Any> {
-                        self.configPFUser(pfUser: pfUser, response: result)
+                        self.configPFUser(pfUser: pfUser, response: result, manager: manager)
                     }
                 })
             }
@@ -37,7 +37,7 @@ class LogInAndAddToData {
         
     }
     
-    func configPFUser (pfUser: PFUser, response: Dictionary<String, Any>) {
+    func configPFUser (pfUser: PFUser, response: Dictionary<String, Any>, manager: FBSDKLoginManager) {
         print("fetched user: \(response)")
         // edit PFUser
         if let picture = response["picture"] as? Dictionary<String, Any> {
@@ -58,11 +58,26 @@ class LogInAndAddToData {
                             let id : NSString = response["id"] as! NSString
                             pfUser["fbID"] = id
                             pfUser["fbPhoto"] = self.file
+//                            FBSDKAccessToken.setCurrent(nil)
+//                            FBSDKProfile.setCurrent(nil)
                             pfUser.signUpInBackground(block: { (succes, error) in
                                 if succes {
-                                    print("sined up")
+                                    if pfUser.isNew {
+                                        print("sined up")
+                                    } else {
+                                        print("we already have this user")
+                                    }
                                 } else {
                                     print("you have error")
+//                                    PFFacebookUtils.linkUser(inBackground: pfUser, with: FBSDKAccessToken.current(), block: { (succes, error) in
+//                                        if error != nil {
+//                                            print("whatever error")
+//                                        } else if succes {
+//                                            print("user linked to existing")
+//                                        } else {
+//                                            print("nothing heppend :/")
+//                                        }
+//                                    })
                                 }
                             })
                         })
@@ -102,7 +117,7 @@ class LogInAndAddToData {
     }
     
     
-
+    
     
     
     
@@ -127,12 +142,12 @@ class LogInAndAddToData {
                 if let fbName = result["name"] as? String {
                     userObject["fbName"] = fbName
                 }
-//                pfUser.username = result["name"] as? String
-//                let id = result["id"] as! String
-//                let userName = DataBaseSearching.sharedInstance.chekcSameUsers(fbID: id, fbName: name)
-//                if let sender = sender as? MasterViewController {
-//                    sender.enterFB.title = userName
-//                }
+                //                pfUser.username = result["name"] as? String
+                //                let id = result["id"] as! String
+                //                let userName = DataBaseSearching.sharedInstance.chekcSameUsers(fbID: id, fbName: name)
+                //                if let sender = sender as? MasterViewController {
+                //                    sender.enterFB.title = userName
+                //                }
             }
         })
         
@@ -153,7 +168,7 @@ class LogInAndAddToData {
         request?.start(completionHandler: { (_, result, _) in
             if let result = result as? Dictionary<String, Any> {
                 let name = result["name"] as! String
-//                let email = result["email"] as! String
+                //                let email = result["email"] as! String
                 let userName = DataBaseSearching.sharedInstance.chekcSameUsers(fbName: name)
                 if let sender = sender as? MasterViewController {
                     sender.enterFB.title = userName

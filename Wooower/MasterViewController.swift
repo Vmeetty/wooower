@@ -138,17 +138,6 @@ extension MasterViewController {
                 }
             }
         }
-        
-        
-        /*
-        Fetching.sharedInstance.fetchPosts(query: query, runQueue: DispatchQueue.global(qos: .userInitiated), complitionQueue: DispatchQueue.main, complition: { (posts, objects, error) in
-            if let posts = posts, let objects = objects {
-                self.objects = objects
-                self.post = posts
-                self.myTableView.reloadData()
-            }
-        })
-        */
     }
     
     

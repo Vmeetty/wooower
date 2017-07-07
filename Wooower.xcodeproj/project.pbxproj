@@ -13,12 +13,14 @@
 		F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */; };
 		F52A50AC1EEAA10800B4BA1C /* ConfigCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */; };
 		F530B5001EF290210025D8BB /* LogInAndAddToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */; };
+		F530D6081F0F937700C1E2B6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530D6071F0F937700C1E2B6 /* LocationManager.swift */; };
 		F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */; };
 		F530DD821EDEE81700A4E235 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530DD811EDEE81700A4E235 /* MasterViewController.swift */; };
 		F530DD851EDEE81800A4E235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD831EDEE81800A4E235 /* Main.storyboard */; };
 		F530DD871EDEE81800A4E235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F530DD861EDEE81800A4E235 /* Assets.xcassets */; };
 		F530DD8A1EDEE81800A4E235 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD881EDEE81800A4E235 /* LaunchScreen.storyboard */; };
 		F536C5281EE69F1400B3BF1C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */; };
+		F54B024E1F0D2FEE00A4B54E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B024D1F0D2FEE00A4B54E /* MapViewController.swift */; };
 		F54BFDD01F00FB32008A9CAC /* DataBaseSearching.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */; };
 		F54BFDD21F01029B008A9CAC /* EditDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BFDD11F01029B008A9CAC /* EditDataBase.swift */; };
 		F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587EF91EE1565100A363FB /* AddViewController.swift */; };
@@ -41,6 +43,7 @@
 		F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigActivityView.swift; sourceTree = "<group>"; };
 		F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCommentView.swift; sourceTree = "<group>"; };
 		F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInAndAddToData.swift; sourceTree = "<group>"; };
+		F530D6071F0F937700C1E2B6 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F530DD7C1EDEE81700A4E235 /* Wooower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wooower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F530DD811EDEE81700A4E235 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 		F530DD891EDEE81800A4E235 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F530DD8B1EDEE81800A4E235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		F54B024D1F0D2FEE00A4B54E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseSearching.swift; sourceTree = "<group>"; };
 		F54BFDD11F01029B008A9CAC /* EditDataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDataBase.swift; sourceTree = "<group>"; };
 		F5587EF91EE1565100A363FB /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				F530DD831EDEE81800A4E235 /* Main.storyboard */,
+				F530D6071F0F937700C1E2B6 /* LocationManager.swift */,
 				F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */,
 				F5CCB5371EE005FF00B0F030 /* Controller */,
 				F5CCB5381EE0060A00B0F030 /* View */,
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				F530DD811EDEE81700A4E235 /* MasterViewController.swift */,
+				F54B024D1F0D2FEE00A4B54E /* MapViewController.swift */,
 				F5587EF91EE1565100A363FB /* AddViewController.swift */,
 				F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */,
 				F5A5051B1EEFE4B300F7D219 /* AllCommentsViewController.swift */,
@@ -290,6 +296,7 @@
 				F5A5051C1EEFE4B300F7D219 /* AllCommentsViewController.swift in Sources */,
 				F5CCB53B1EE0077E00B0F030 /* FetchingPosts.swift in Sources */,
 				F5DA0FE81EE57B1B00E8ED97 /* KeyboardSize.swift in Sources */,
+				F54B024E1F0D2FEE00A4B54E /* MapViewController.swift in Sources */,
 				F530B5001EF290210025D8BB /* LogInAndAddToData.swift in Sources */,
 				F5DA0FE61EE56AE300E8ED97 /* PickerConfig.swift in Sources */,
 				F536C5281EE69F1400B3BF1C /* ActivityViewController.swift in Sources */,
@@ -303,6 +310,7 @@
 				F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */,
 				F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */,
 				F530DD821EDEE81700A4E235 /* MasterViewController.swift in Sources */,
+				F530D6081F0F937700C1E2B6 /* LocationManager.swift in Sources */,
 				F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */,
 				F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */,
 				F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */,
