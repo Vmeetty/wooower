@@ -16,6 +16,7 @@ import ParseFacebookUtilsV4
 let cellID = "wooowerCell"
 let activityViewController = "ActivityViewController"
 let profileSegueID = "ProfileViewController"
+let mapSegue = "MapViewController"
 
 class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
@@ -81,6 +82,10 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
                     let object = objects[indexPath.row]
                     activityVC.activityItem = object
                 }
+            }
+        } else if segue.identifier == mapSegue {
+            if let mapVC = segue.destination as? MapViewController {
+                mapVC.postObjects = objects
             }
         }
     }

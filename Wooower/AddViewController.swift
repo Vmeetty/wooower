@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import MapKit
 
 let addCellID = "addCell"
 
@@ -18,17 +19,28 @@ class AddViewController: UIViewController {
     @IBOutlet weak var photoPanalConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageBox: PFImageView!
     var file: PFFile?
+    var latitude: Double = 0
+    var longitude: Double = 0
+    var coreLocationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.becomeFirstResponder()
         observKeybordView()
+        // optimize locationManager configuration
+//        LocationDefining.sharedInstance.configLocationManager(sender: self)
+        coreLocationManager.delegate = self
+        coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        coreLocationManager.requestWhenInUseAuthorization()
+        coreLocationManager.startUpdatingLocation()
     }
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
         let post = PFObject(className: "Post")
         post["descriptions"] = descriptionTextView.text
         post["user"] = PFUser.current()
+        post["latitude"] = latitude
+        post["longitude"] = longitude
         if let file = file {
             post["picture"] = file
         }
@@ -83,6 +95,15 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
     }
 }
 
+extension AddViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations[0]
+        latitude = Double(location.coordinate.latitude)
+        longitude = Double(location.coordinate.longitude)
+    }
+    
+}
 
 
 

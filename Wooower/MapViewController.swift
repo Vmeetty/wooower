@@ -8,73 +8,59 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
 
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var objectAdress: UILabel!
-    
+    var postObjects:[PFObject] = []
     var coreLocationManager = CLLocationManager()
-    var locationManager: LocationManager!
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addPinsOnMap()
+        // optimize locationManager configuration
+//        LocationDefining.sharedInstance.configLocationManager(sender: self)
         coreLocationManager.delegate = self
         coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         coreLocationManager.requestWhenInUseAuthorization()
         coreLocationManager.startUpdatingLocation()
-//        locationManager = LocationManager.sharedInstance
-//        let authorizationCode = CLLocationManager.authorizationStatus()
         
-//        if authorizationCode == CLAuthorizationStatus.notDetermined && coreLocationManager.responds(to:(Selector(("authorizationIfUsage")))) {
-//            if Bundle.main.object(forInfoDictionaryKey: "Location When In Use Usage Description") != nil {
-//                coreLocationManager.requestWhenInUseAuthorization()
-//            }else {
-//                print("no description provided")
-//            }
-//        }else {
-//            getLocation()
-//        }
+    }
+    
+    func addPinsOnMap () {
+        var annotations: [MKPointAnnotation] = []
+        for object in postObjects {
+            if let latitude = object["latitude"] as? Double, let longitude = object["longitude"] as? Double {
+                let pinLocation = CLLocationCoordinate2DMake(latitude, longitude)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = pinLocation
+                if let user = object["user"] as? PFUser {
+                    if let name = user["username"] as? String {
+                        annotation.title = name
+                    }
+                }
+                if let description = object["descriptions"] as? String {
+                    annotation.subtitle = description
+                }
+                annotations.append(annotation)
+            }
+        }
+        mapView.addAnnotations(annotations)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
         
-        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let span = MKCoordinateSpanMake(10, 10)
         let myLocation = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
         let region = MKCoordinateRegion(center: myLocation, span: span)
-        mapView.setRegion(region, animated: true)
+//        mapView.setRegion(region, animated: true)
         
         mapView.showsUserLocation = true
+        mapView.isZoomEnabled = true
+        mapView.isScrollEnabled = true
     }
-    
-//    func getLocation () {
-//        locationManager.startUpdatingLocationWithCompletionHandler { (latitude, longitude, status, verboseMassage, error) -> () in
-//            self.displayLocation(location: CLLocation(latitude: latitude, longitude: longitude))
-//        }
-//    }
-//
-//    func displayLocation(location: CLLocation) {
-//        let locationCordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-//        let locationSpan = MKCoordinateSpanMake(0.05, 0.05)
-//        let regionCoordinats = MKCoordinateRegion(center: locationCordinate, span: locationSpan)
-//        mapView.setRegion(regionCoordinats, animated: true)
-//        let pinLocationCordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//        let annotation = MKPointAnnotation()
-//        annotation.coordinate = pinLocationCordinate
-//        mapView.addAnnotation(annotation)
-//        mapView.showAnnotations([annotation], animated: true)
-//    }
-//    
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        if status != CLAuthorizationStatus.notDetermined || status != CLAuthorizationStatus.denied || status != CLAuthorizationStatus.restricted {
-//            getLocation()
-//        }
-//    }
-    
-    
-    
-    
     
 
 
