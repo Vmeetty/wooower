@@ -47,6 +47,10 @@ let userName = "username"
 let userFbName = "fbName"
 let userFbPhoto = "fbPhoto"
 let userComments = "comments"
+let userFbID = "fbID"
+let userObjectId = "objectId"
+let userCreatedAt = "createdAt"
+let userUpdatedAt = "updatedAt"
 
 // let dataBase "Comment" class culomns
 let commentParse = "Comment"
@@ -54,7 +58,9 @@ let commentTxt = "text"
 let commentUser = "user"
 let commentPost = "post"
 
-
+// fetched USER DICTIONARY KEYS
+//***** same as dataBase "User" class culomns, but also it has such keys as:
+let allUserComments = "allUserComments"
 
 
 

@@ -100,12 +100,10 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
                             } else {
                                 self.userPhoto = UIImage(named: "123")
                             }
+                            if let comments = dict[allUserComments] as? Array<Any> {
+                                self.commentsCount = String(comments.count)
+                            }
                             if let userName = self.fbName, let userPhoto = self.userPhoto {
-                                ConfigCommentView.sharedInstance.configComments(object: PFUser.current(), runQueue: kUserInitiatedGQ, complitionQueue: kMainQueue, complition: { (comments, error) in
-                                    if let comments = comments {
-                                        self.commentsCount = String(comments.count)
-                                    }
-                                })
                                 let profile = Profile(userName: userName, userPhoto: userPhoto, commentsCount: self.commentsCount!)
                                 profileVC.profile = profile
                             }
