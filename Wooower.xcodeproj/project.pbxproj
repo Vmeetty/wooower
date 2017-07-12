@@ -12,6 +12,9 @@
 		F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */; };
 		F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */; };
 		F52A50AC1EEAA10800B4BA1C /* ConfigCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */; };
+		F52D7C911F1609F0001062F9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D7C901F1609F0001062F9 /* ProfileViewController.swift */; };
+		F52D7C931F160B4A001062F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D7C921F160B4A001062F9 /* Constants.swift */; };
+		F52D7C951F16100C001062F9 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52D7C941F16100C001062F9 /* Profile.swift */; };
 		F530B5001EF290210025D8BB /* LogInAndAddToData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */; };
 		F530D6081F0F937700C1E2B6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530D6071F0F937700C1E2B6 /* LocationManager.swift */; };
 		F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */; };
@@ -32,6 +35,7 @@
 		F5DA0FE61EE56AE300E8ED97 /* PickerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DA0FE51EE56AE300E8ED97 /* PickerConfig.swift */; };
 		F5DA0FE81EE57B1B00E8ED97 /* KeyboardSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DA0FE71EE57B1B00E8ED97 /* KeyboardSize.swift */; };
 		F5DA0FEA1EE57E6900E8ED97 /* ObservKeybordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DA0FE91EE57E6900E8ED97 /* ObservKeybordView.swift */; };
+		F5DAD2ED1F14BFE100A6E9B9 /* CurrentUserConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DAD2EC1F14BFE100A6E9B9 /* CurrentUserConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,9 @@
 		F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigActivityView.swift; sourceTree = "<group>"; };
 		F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCommentView.swift; sourceTree = "<group>"; };
+		F52D7C901F1609F0001062F9 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F52D7C921F160B4A001062F9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F52D7C941F16100C001062F9 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInAndAddToData.swift; sourceTree = "<group>"; };
 		F530D6071F0F937700C1E2B6 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F530DD7C1EDEE81700A4E235 /* Wooower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wooower.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +71,7 @@
 		F5DA0FE51EE56AE300E8ED97 /* PickerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerConfig.swift; sourceTree = "<group>"; };
 		F5DA0FE71EE57B1B00E8ED97 /* KeyboardSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardSize.swift; sourceTree = "<group>"; };
 		F5DA0FE91EE57E6900E8ED97 /* ObservKeybordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservKeybordView.swift; sourceTree = "<group>"; };
+		F5DAD2EC1F14BFE100A6E9B9 /* CurrentUserConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +127,7 @@
 				F530DD831EDEE81800A4E235 /* Main.storyboard */,
 				F530D6071F0F937700C1E2B6 /* LocationManager.swift */,
 				F530DD7F1EDEE81700A4E235 /* AppDelegate.swift */,
+				F52D7C921F160B4A001062F9 /* Constants.swift */,
 				F5CCB5371EE005FF00B0F030 /* Controller */,
 				F5CCB5381EE0060A00B0F030 /* View */,
 				F5CCB5391EE0061000B0F030 /* Model */,
@@ -137,6 +146,7 @@
 				F5587EF91EE1565100A363FB /* AddViewController.swift */,
 				F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */,
 				F5A5051B1EEFE4B300F7D219 /* AllCommentsViewController.swift */,
+				F52D7C901F1609F0001062F9 /* ProfileViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -155,9 +165,11 @@
 			isa = PBXGroup;
 			children = (
 				F5CCB5331EDFFFAB00B0F030 /* Post.swift */,
+				F52D7C941F16100C001062F9 /* Profile.swift */,
 				F52A50A51EEA90CF00B4BA1C /* Comment.swift */,
 				F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */,
 				F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */,
+				F5DAD2EC1F14BFE100A6E9B9 /* CurrentUserConfig.swift */,
 				F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */,
 				F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */,
 				F54BFDD11F01029B008A9CAC /* EditDataBase.swift */,
@@ -294,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5A5051C1EEFE4B300F7D219 /* AllCommentsViewController.swift in Sources */,
+				F5DAD2ED1F14BFE100A6E9B9 /* CurrentUserConfig.swift in Sources */,
 				F5CCB53B1EE0077E00B0F030 /* FetchingPosts.swift in Sources */,
 				F5DA0FE81EE57B1B00E8ED97 /* KeyboardSize.swift in Sources */,
 				F54B024E1F0D2FEE00A4B54E /* MapViewController.swift in Sources */,
@@ -307,6 +320,8 @@
 				F54BFDD21F01029B008A9CAC /* EditDataBase.swift in Sources */,
 				F52A50A61EEA90CF00B4BA1C /* Comment.swift in Sources */,
 				F54BFDD01F00FB32008A9CAC /* DataBaseSearching.swift in Sources */,
+				F52D7C911F1609F0001062F9 /* ProfileViewController.swift in Sources */,
+				F52D7C951F16100C001062F9 /* Profile.swift in Sources */,
 				F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */,
 				F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */,
 				F530DD821EDEE81700A4E235 /* MasterViewController.swift in Sources */,
@@ -314,6 +329,7 @@
 				F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */,
 				F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */,
 				F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */,
+				F52D7C931F160B4A001062F9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

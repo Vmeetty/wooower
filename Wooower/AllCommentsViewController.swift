@@ -9,8 +9,6 @@
 import UIKit
 import Parse
 
-let allCommentCellID = "allCommentCellID"
-
 class AllCommentsViewController: UIViewController {
 
     var activityItem: PFObject? {
@@ -30,7 +28,7 @@ class AllCommentsViewController: UIViewController {
     }
     
     func configView () {
-        ConfigCommentView.sharedInstance.configComments(activity: activityItem,
+        ConfigCommentView.sharedInstance.configComments(object: activityItem,
                                                          runQueue: DispatchQueue.global(qos: .userInitiated),
                                                          complitionQueue: DispatchQueue.main) { (commentsArray, error) in
                                                             if let comments = commentsArray {

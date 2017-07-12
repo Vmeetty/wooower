@@ -15,6 +15,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var postObjects:[PFObject] = []
     var coreLocationManager = CLLocationManager()
     @IBOutlet weak var mapView: MKMapView!
+    var location: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,22 +26,31 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         coreLocationManager.requestWhenInUseAuthorization()
         coreLocationManager.startUpdatingLocation()
-        
+        setRegionOnMap()
+    }
+    
+    func setRegionOnMap () {
+        let span = MKCoordinateSpanMake(10, 10)
+        if let location = self.location {
+           let myLocation = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+            let region = MKCoordinateRegion(center: myLocation, span: span)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     func addPinsOnMap () {
         var annotations: [MKPointAnnotation] = []
         for object in postObjects {
-            if let latitude = object["latitude"] as? Double, let longitude = object["longitude"] as? Double {
+            if let latitude = object[postLatitude] as? Double, let longitude = object[postLongitude] as? Double {
                 let pinLocation = CLLocationCoordinate2DMake(latitude, longitude)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = pinLocation
-                if let user = object["user"] as? PFUser {
-                    if let name = user["username"] as? String {
+                if let user = object[postUser] as? PFUser {
+                    if let name = user[userName] as? String {
                         annotation.title = name
                     }
                 }
-                if let description = object["descriptions"] as? String {
+                if let description = object[postDescription] as? String {
                     annotation.subtitle = description
                 }
                 annotations.append(annotation)
@@ -50,18 +60,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[0]
-        
-        let span = MKCoordinateSpanMake(10, 10)
-        let myLocation = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        let region = MKCoordinateRegion(center: myLocation, span: span)
-//        mapView.setRegion(region, animated: true)
-        
+        location = locations[0]
         mapView.showsUserLocation = true
-        mapView.isZoomEnabled = true
-        mapView.isScrollEnabled = true
     }
-    
 
 
 }

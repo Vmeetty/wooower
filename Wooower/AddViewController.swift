@@ -11,8 +11,6 @@ import Parse
 import ParseUI
 import MapKit
 
-let addCellID = "addCell"
-
 class AddViewController: UIViewController {
 
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -36,13 +34,13 @@ class AddViewController: UIViewController {
     }
     
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
-        let post = PFObject(className: "Post")
-        post["descriptions"] = descriptionTextView.text
-        post["user"] = PFUser.current()
-        post["latitude"] = latitude
-        post["longitude"] = longitude
+        let post = PFObject(className: postParse)
+        post[postDescription] = descriptionTextView.text
+        post[postUser] = PFUser.current()
+        post[postLatitude] = latitude
+        post[postLongitude] = longitude
         if let file = file {
-            post["picture"] = file
+            post[postPicture] = file
         }
         post.saveEventually()
         self.dismiss(animated: true, completion: nil)

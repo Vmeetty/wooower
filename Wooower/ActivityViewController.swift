@@ -9,9 +9,6 @@
 import UIKit
 import Parse
 
-let commentCellID = "commentCell"
-let allCommentsSegue = "AllCommentsViewController"
-
 class ActivityViewController: UIViewController {
 
     var activityItem: PFObject? {
@@ -58,7 +55,7 @@ class ActivityViewController: UIViewController {
     func configView () {
         
         ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
-        ConfigCommentView.sharedInstance.configComments(activity: activityItem,
+        ConfigCommentView.sharedInstance.configComments(object: activityItem,
                                                          runQueue: DispatchQueue.global(qos: .userInitiated),
                                                          complitionQueue: DispatchQueue.main) { (commentsArray, error) in
                                                             if let comments = commentsArray {
@@ -106,13 +103,17 @@ class ActivityViewController: UIViewController {
     
     @IBAction func sendCommentAction(_ sender: UIButton) {
         view.endEditing(true)
-        let comment = PFObject(className: "Comment")
-        comment["text"] = commentText.text
-        comment["user"] = PFUser.current()
-        comment["post"] = self.activityItem
+        let comment = PFObject(className: commentParse)
+        comment[commentTxt] = commentText.text
+        comment[commentUser] = PFUser.current()
+        comment[commentPost] = self.activityItem
         comment.saveInBackground { (succes, error) in
-            let relation = self.activityItem?.relation(forKey: "comments")
-            relation?.add(comment)
+            let postCommentRelation = self.activityItem?.relation(forKey: postComments)
+            postCommentRelation?.add(comment)
+            if let user = self.activityItem?[postUser] as? PFUser {
+                let userCommentRelation = user.relation(forKey: userComments)
+                userCommentRelation.add(comment)
+            }
             self.activityItem?.saveInBackground(block: { (succes, error) in
                 self.myCommentTableView.reloadData()
             })

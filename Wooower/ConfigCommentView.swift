@@ -15,15 +15,12 @@ class ConfigCommentView {
     static let sharedInstance = ConfigCommentView()
     private init () {}
     
-    func configComments (activity: PFObject?,
-                          runQueue: DispatchQueue,
-                          complitionQueue: DispatchQueue,
-                          complition: @escaping ([Comment]?, Error?) -> ()) {
+    func configComments (object: Any?,
+                         runQueue: DispatchQueue,
+                         complitionQueue: DispatchQueue,
+                         complition: @escaping ([Comment]?, Error?) -> ()) {
         
-        let commentRelation = activity?.relation(forKey: "comments")
-        let query = commentRelation?.query()
-        query?.includeKey("user")
-        query?.order(byAscending: "createdAt")
+        let query = configQuery(object: object)
         runQueue.async {
             do {
                 if let objects = try query?.findObjects() {
@@ -46,6 +43,22 @@ class ConfigCommentView {
             }
         }
     }
+    
+    func configQuery (object: Any?) ->  PFQuery<PFObject>? {
+        var resultQuery: PFQuery<PFObject>? = nil
+        if let post = object as? PFObject {
+            let commentRelation = post.relation(forKey: "comments")
+            let query = commentRelation.query()
+            query.includeKey("user")
+            query.order(byAscending: "createdAt")
+            resultQuery = query
+        } else if let user = object as? PFUser {
+            let commentRelation = user.relation(forKey: "comments")
+            let query = commentRelation.query()
+            resultQuery = query
+        }
+       return resultQuery!
+    }
 
-}    
+}
 

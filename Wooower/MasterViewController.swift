@@ -13,17 +13,16 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
 
-let cellID = "wooowerCell"
-let activityViewController = "ActivityViewController"
-let profileSegueID = "ProfileViewController"
-let mapSegue = "MapViewController"
-
 class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     @IBOutlet weak var enterFB: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
     var post: [Post] = []
     var objects: [PFObject] = []
+    
+    var userPhoto: UIImage?
+    var fbName: String?
+    var commentsCount: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +51,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         displayProfileButton()
         fetchPosts2()
+        myTableView.reloadData()
     }
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
@@ -86,6 +86,36 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
         } else if segue.identifier == mapSegue {
             if let mapVC = segue.destination as? MapViewController {
                 mapVC.postObjects = objects
+            }
+        } else if segue.identifier == profileSegueID {
+            if let profileVC = segue.destination as? ProfileViewController {
+                CurrentUserConfig.sharedInstance.fetchUser(pfUser: PFUser.current(), complition: { (dict) in
+                    if dict != nil {
+                        if let dict = dict {
+                            if let name = dict[userFbName] as? String {
+                                self.fbName = name
+                            }
+                            if let photo = dict[userFbPhoto] as? UIImage {
+                                self.userPhoto = photo
+                            } else {
+                                self.userPhoto = UIImage(named: "123")
+                            }
+                            if let userName = self.fbName, let userPhoto = self.userPhoto {
+                                ConfigCommentView.sharedInstance.configComments(object: PFUser.current(), runQueue: kUserInitiatedGQ, complitionQueue: kMainQueue, complition: { (comments, error) in
+                                    if let comments = comments {
+                                        self.commentsCount = String(comments.count)
+                                    }
+                                })
+                                let profile = Profile(userName: userName, userPhoto: userPhoto, commentsCount: self.commentsCount!)
+                                profileVC.profile = profile
+                            }
+                            
+                        }
+                        
+                    }
+                })
+                
+                
             }
         }
     }
@@ -124,13 +154,13 @@ extension MasterViewController {
     
     
     func fetchPosts2 () {
-        let query = PFQuery(className: "Post")
-        query.includeKey("user")
-        query.order(byAscending: "createdAt")
+        let query = PFQuery(className: postParse)
+        query.includeKey(postUser)
+        query.order(byAscending: postCreatedAt)
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 let objects = try query.findObjects()
-                FetchingPosts.sharedInstance.fetchPosts(objects: objects, complitionQueue: DispatchQueue.main, complition: { (posts, objects, error) in
+                FetchingPosts.sharedInstance.fetchPosts(objects: objects, complitionQueue: kMainQueue, complition: { (posts, objects, error) in
                     if let posts = posts, let objects = objects {
                         self.objects = objects
                         self.post = posts
