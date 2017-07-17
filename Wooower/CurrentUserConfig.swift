@@ -37,6 +37,7 @@ class CurrentUserConfig {
                             resultDictionary[userCreatedAt] = createdAt
                             resultDictionary[userObjectId] = objectId
                             kMainQueue.async {
+                                complition(resultDictionary)
                                 ConfigCommentView.sharedInstance.configComments(object: pfUser, runQueue: kUserInitiatedGQ, complitionQueue: kMainQueue, complition: { (comments, error) in
                                     if let comments = comments {
                                         resultDictionary[allUserComments] = comments
@@ -51,6 +52,5 @@ class CurrentUserConfig {
             }
         }
     }
-    
 }
 

@@ -22,7 +22,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     var userPhoto: UIImage?
     var fbName: String?
-    var commentsCount: String?
+    var commentsCount: String = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +50,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         displayProfileButton()
-        fetchPosts2 { (objects, posts) in
-            if objects.count == 0 {
-                
-            }
-        }
-        myTableView.reloadData()
+        fetchPosts()
     }
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
@@ -108,10 +103,10 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
                                 self.commentsCount = String(comments.count)
                             }
                             if let userName = self.fbName, let userPhoto = self.userPhoto {
-                                let profile = Profile(userName: userName, userPhoto: userPhoto, commentsCount: self.commentsCount!)
+                                let profile = Profile(userName: userName, userPhoto: userPhoto, commentsCount: self.commentsCount)
                                 profileVC.profile = profile
                             }
-                        }   
+                        }
                     }
                 })
             }
@@ -140,39 +135,14 @@ extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TableViewCell
-        if self.post.count == 0 {
-            cell?.textLabel?.text = "You still don't have events in this region"
-        } else {
-            let post = self.post[indexPath.row]
-            cell?.post = post
-        }
+        let post = self.post[indexPath.row]
+        cell?.post = post
         return cell!
     }
     
 }
 
 extension MasterViewController {
-    
-    
-    func fetchPosts2 (block: @escaping (_ objects: [PFObject], _ posts: [Post])->()) {
-        let query = PFQuery(className: postParse)
-        query.includeKey(postUser)
-        query.order(byAscending: postCreatedAt)
-        kUserInitiatedGQ.async {
-            do {
-                let objects = try query.findObjects()
-                FetchingPosts.sharedInstance.fetchPosts(objects: objects, complitionQueue: kMainQueue, complition: { (posts, objects, error) in
-                    if let posts = posts, let objects = objects {
-                        block(objects, posts)
-                    }
-                })
-            } catch let error {
-                kMainQueue.async {
-                    print(error)
-                }
-            }
-        }
-    }
     
     func fetchPosts () {
         let query = PFQuery(className: postParse)
