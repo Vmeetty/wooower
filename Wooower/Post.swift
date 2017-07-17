@@ -15,11 +15,6 @@ class Post {
     var userPhoto: UIImage
     var description: String
     
-//    init(name: String, description: String) {
-//        self.name = name
-//        self.description = description
-//    }
-    
     init(name: String, description: String, photo: UIImage) {
         self.name = name
         userPhoto = photo

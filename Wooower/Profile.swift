@@ -11,16 +11,6 @@ import UIKit
 
 class Profile {
     
-//    var userName: String?
-//    var userPhoto: UIImage?
-//    
-//    init(userName: String, userPhoto: UIImage) {
-//        self.userName = userName
-//        self.userPhoto = userPhoto
-//    }
-    
-    
-    
     var userName: String?
     var userPhoto: UIImage?
     var commentsCount: String?

@@ -25,11 +25,11 @@ class ConfigActivityView {
                 }
             }
             if let descriptionLabel = activityVC.descriptionLabel {
-                descriptionLabel.text = (activity["descriptions"] as! String)
-                if let user = activity["user"] as? PFUser {
+                descriptionLabel.text = (activity[postDescription] as! String)
+                if let user = activity[postUser] as? PFUser {
                     if let userName = user.username {
                         activityVC.nameLabel.text = userName
-                        if let userPhoto = user["fbPhoto"] as? PFFile {
+                        if let userPhoto = user[userFbPhoto] as? PFFile {
                             userPhoto.getDataInBackground(block: { (data, error) in
                                 if let imageData = UIImage(data: data!) {
                                     activityVC.userPhotoImageView.image = imageData
@@ -38,7 +38,7 @@ class ConfigActivityView {
                         }
                     }
                 }
-                if let imageFile = activity["picture"] as? PFFile {
+                if let imageFile = activity[postPicture] as? PFFile {
                     imageFile.getDataInBackground(block: { (data, error) in
                         if let imageData = UIImage(data: data!) {
                             activityVC.pictureImageView.image = imageData

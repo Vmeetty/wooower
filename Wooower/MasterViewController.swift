@@ -50,7 +50,11 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         displayProfileButton()
-        fetchPosts2()
+        fetchPosts2 { (objects, posts) in
+            if objects.count == 0 {
+                
+            }
+        }
         myTableView.reloadData()
     }
     
@@ -107,13 +111,9 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
                                 let profile = Profile(userName: userName, userPhoto: userPhoto, commentsCount: self.commentsCount!)
                                 profileVC.profile = profile
                             }
-                            
-                        }
-                        
+                        }   
                     }
                 })
-                
-                
             }
         }
     }
@@ -140,9 +140,12 @@ extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as? TableViewCell
-        let post = self.post[indexPath.row]
-        cell?.post = post
-        
+        if self.post.count == 0 {
+            cell?.textLabel?.text = "You still don't have events in this region"
+        } else {
+            let post = self.post[indexPath.row]
+            cell?.post = post
+        }
         return cell!
     }
     
@@ -151,11 +154,31 @@ extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
 extension MasterViewController {
     
     
-    func fetchPosts2 () {
+    func fetchPosts2 (block: @escaping (_ objects: [PFObject], _ posts: [Post])->()) {
         let query = PFQuery(className: postParse)
         query.includeKey(postUser)
         query.order(byAscending: postCreatedAt)
-        DispatchQueue.global(qos: .userInitiated).async {
+        kUserInitiatedGQ.async {
+            do {
+                let objects = try query.findObjects()
+                FetchingPosts.sharedInstance.fetchPosts(objects: objects, complitionQueue: kMainQueue, complition: { (posts, objects, error) in
+                    if let posts = posts, let objects = objects {
+                        block(objects, posts)
+                    }
+                })
+            } catch let error {
+                kMainQueue.async {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func fetchPosts () {
+        let query = PFQuery(className: postParse)
+        query.includeKey(postUser)
+        query.order(byAscending: postCreatedAt)
+        kUserInitiatedGQ.async {
             do {
                 let objects = try query.findObjects()
                 FetchingPosts.sharedInstance.fetchPosts(objects: objects, complitionQueue: kMainQueue, complition: { (posts, objects, error) in
@@ -166,7 +189,7 @@ extension MasterViewController {
                     }
                 })
             } catch let error {
-                DispatchQueue.main.async {
+                kMainQueue.async {
                     print(error)
                 }
             }

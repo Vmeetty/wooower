@@ -26,8 +26,8 @@ class ConfigCommentView {
                 if let objects = try query?.findObjects() {
                     var commentsArray: [Comment] = []
                     objects.forEach({ (obj) in
-                        if let userName = (obj["user"] as? PFUser)?.username {
-                            let text = obj["text"] as! String
+                        if let userName = (obj[commentUser] as? PFUser)?.username {
+                            let text = obj[commentTxt] as! String
                             let comment = Comment(name: userName, text: text)
                             commentsArray.append(comment)
                             complitionQueue.async {
@@ -47,13 +47,13 @@ class ConfigCommentView {
     func configQuery (object: Any?) ->  PFQuery<PFObject>? {
         var resultQuery: PFQuery<PFObject>? = nil
         if let post = object as? PFObject {
-            let commentRelation = post.relation(forKey: "comments")
+            let commentRelation = post.relation(forKey: postComments)
             let query = commentRelation.query()
-            query.includeKey("user")
-            query.order(byAscending: "createdAt")
+            query.includeKey(commentUser)
+            query.order(byAscending: commentCreatedAt)
             resultQuery = query
         } else if let user = object as? PFUser {
-            let commentRelation = user.relation(forKey: "comments")
+            let commentRelation = user.relation(forKey: postComments)
             let query = commentRelation.query()
             resultQuery = query
         }

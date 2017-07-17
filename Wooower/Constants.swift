@@ -57,6 +57,7 @@ let commentParse = "Comment"
 let commentTxt = "text"
 let commentUser = "user"
 let commentPost = "post"
+let commentCreatedAt = "createdAt"
 
 // fetched USER DICTIONARY KEYS
 //***** same as dataBase "User" class culomns, but also it has such keys as:
