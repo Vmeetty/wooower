@@ -27,6 +27,7 @@
 		F54BFDD01F00FB32008A9CAC /* DataBaseSearching.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */; };
 		F54BFDD21F01029B008A9CAC /* EditDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BFDD11F01029B008A9CAC /* EditDataBase.swift */; };
 		F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587EF91EE1565100A363FB /* AddViewController.swift */; };
+		F580BB3E1F1CCDF3008AF04A /* Spinners.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580BB3D1F1CCDF3008AF04A /* Spinners.swift */; };
 		F5A5051C1EEFE4B300F7D219 /* AllCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A5051B1EEFE4B300F7D219 /* AllCommentsViewController.swift */; };
 		F5A5051E1EEFE6C500F7D219 /* AllCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */; };
 		F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5331EDFFFAB00B0F030 /* Post.swift */; };
@@ -63,6 +64,7 @@
 		F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseSearching.swift; sourceTree = "<group>"; };
 		F54BFDD11F01029B008A9CAC /* EditDataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDataBase.swift; sourceTree = "<group>"; };
 		F5587EF91EE1565100A363FB /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		F580BB3D1F1CCDF3008AF04A /* Spinners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinners.swift; sourceTree = "<group>"; };
 		F5A5051B1EEFE4B300F7D219 /* AllCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCommentsViewController.swift; sourceTree = "<group>"; };
 		F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCommentTableViewCell.swift; sourceTree = "<group>"; };
 		F5CCB5331EDFFFAB00B0F030 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */,
 				F54BFDD11F01029B008A9CAC /* EditDataBase.swift */,
 				F5CCB53A1EE0077E00B0F030 /* FetchingPosts.swift */,
+				F580BB3D1F1CCDF3008AF04A /* Spinners.swift */,
 				F5DA0FE51EE56AE300E8ED97 /* PickerConfig.swift */,
 				F5DA0FE71EE57B1B00E8ED97 /* KeyboardSize.swift */,
 				F5DA0FE91EE57E6900E8ED97 /* ObservKeybordView.swift */,
@@ -328,6 +331,7 @@
 				F530D6081F0F937700C1E2B6 /* LocationManager.swift in Sources */,
 				F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */,
 				F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */,
+				F580BB3E1F1CCDF3008AF04A /* Spinners.swift in Sources */,
 				F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */,
 				F52D7C931F160B4A001062F9 /* Constants.swift in Sources */,
 			);

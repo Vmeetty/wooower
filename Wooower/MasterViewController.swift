@@ -15,6 +15,8 @@ import ParseFacebookUtilsV4
 
 class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
+    
+    
     @IBOutlet weak var enterFB: UIBarButtonItem!
     @IBOutlet weak var myTableView: UITableView!
     var post: [Post] = []
@@ -50,6 +52,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         displayProfileButton()
+        Spinners.sharedInstance.setLoadingScreen(sender: self)
         fetchPosts()
     }
     
@@ -151,16 +154,37 @@ extension MasterViewController {
         kUserInitiatedGQ.async {
             do {
                 let objects = try query.findObjects()
-                FetchingPosts.sharedInstance.fetchPosts(objects: objects, complitionQueue: kMainQueue, complition: { (posts, objects, error) in
-                    if let posts = posts, let objects = objects {
-                        self.objects = objects
-                        self.post = posts
-                        self.myTableView.reloadData()
+                if objects.count == 0 {
+                    kMainQueue.async {
+                        Spinners.sharedInstance.removeLoadingScreen()
+                        Spinners.sharedInstance.setCapView(sender: self, complition: { (labelText, view) in
+                            labelText.text = "Uh Oh! There are no events still :("
+                            view.addSubview(labelText)
+                            self.myTableView.addSubview(view)
+                        })
                     }
-                })
-            } catch let error {
+                    
+                }
                 kMainQueue.async {
-                    print(error)
+                    FetchingPosts.sharedInstance.fetchPosts(objects: objects, complition: { (posts, objects, error) in
+                        if let posts = posts, let objects = objects {
+                            self.objects = objects
+                            self.post = posts
+                            self.myTableView.reloadData()
+                            Spinners.sharedInstance.removeLoadingScreen()
+                            Spinners.sharedInstance.removeCapView()
+                        }
+                    })
+                }
+                
+            } catch {
+                kMainQueue.async {
+                    Spinners.sharedInstance.removeLoadingScreen()
+                    Spinners.sharedInstance.setCapView(sender: self, complition: { (labelText, view) in
+                        labelText.text = "Unknown error"
+                        view.addSubview(labelText)
+                        self.myTableView.addSubview(view)
+                    })
                 }
             }
         }
