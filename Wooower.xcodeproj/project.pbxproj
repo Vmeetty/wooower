@@ -23,10 +23,12 @@
 		F530DD871EDEE81800A4E235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F530DD861EDEE81800A4E235 /* Assets.xcassets */; };
 		F530DD8A1EDEE81800A4E235 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F530DD881EDEE81800A4E235 /* LaunchScreen.storyboard */; };
 		F536C5281EE69F1400B3BF1C /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */; };
+		F5458B221F21F2BB006BA804 /* MapManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5458B211F21F2BB006BA804 /* MapManaging.swift */; };
 		F54B024E1F0D2FEE00A4B54E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54B024D1F0D2FEE00A4B54E /* MapViewController.swift */; };
 		F54BFDD01F00FB32008A9CAC /* DataBaseSearching.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */; };
 		F54BFDD21F01029B008A9CAC /* EditDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BFDD11F01029B008A9CAC /* EditDataBase.swift */; };
 		F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587EF91EE1565100A363FB /* AddViewController.swift */; };
+		F571C2151F20C5E400DBE068 /* LoadPostObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = F571C2141F20C5E400DBE068 /* LoadPostObjects.swift */; };
 		F580BB3E1F1CCDF3008AF04A /* Spinners.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580BB3D1F1CCDF3008AF04A /* Spinners.swift */; };
 		F5A5051C1EEFE4B300F7D219 /* AllCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A5051B1EEFE4B300F7D219 /* AllCommentsViewController.swift */; };
 		F5A5051E1EEFE6C500F7D219 /* AllCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */; };
@@ -60,10 +62,12 @@
 		F530DD891EDEE81800A4E235 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F530DD8B1EDEE81800A4E235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F536C5271EE69F1400B3BF1C /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		F5458B211F21F2BB006BA804 /* MapManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapManaging.swift; sourceTree = "<group>"; };
 		F54B024D1F0D2FEE00A4B54E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseSearching.swift; sourceTree = "<group>"; };
 		F54BFDD11F01029B008A9CAC /* EditDataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDataBase.swift; sourceTree = "<group>"; };
 		F5587EF91EE1565100A363FB /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		F571C2141F20C5E400DBE068 /* LoadPostObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadPostObjects.swift; sourceTree = "<group>"; };
 		F580BB3D1F1CCDF3008AF04A /* Spinners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinners.swift; sourceTree = "<group>"; };
 		F5A5051B1EEFE4B300F7D219 /* AllCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCommentsViewController.swift; sourceTree = "<group>"; };
 		F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -170,12 +174,14 @@
 				F52D7C941F16100C001062F9 /* Profile.swift */,
 				F52A50A51EEA90CF00B4BA1C /* Comment.swift */,
 				F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */,
+				F571C2141F20C5E400DBE068 /* LoadPostObjects.swift */,
 				F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */,
 				F5DAD2EC1F14BFE100A6E9B9 /* CurrentUserConfig.swift */,
 				F530B4FF1EF290210025D8BB /* LogInAndAddToData.swift */,
 				F54BFDCF1F00FB32008A9CAC /* DataBaseSearching.swift */,
 				F54BFDD11F01029B008A9CAC /* EditDataBase.swift */,
 				F5CCB53A1EE0077E00B0F030 /* FetchingPosts.swift */,
+				F5458B211F21F2BB006BA804 /* MapManaging.swift */,
 				F580BB3D1F1CCDF3008AF04A /* Spinners.swift */,
 				F5DA0FE51EE56AE300E8ED97 /* PickerConfig.swift */,
 				F5DA0FE71EE57B1B00E8ED97 /* KeyboardSize.swift */,
@@ -328,10 +334,12 @@
 				F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */,
 				F5CCB5361EE005E000B0F030 /* TableViewCell.swift in Sources */,
 				F530DD821EDEE81700A4E235 /* MasterViewController.swift in Sources */,
+				F5458B221F21F2BB006BA804 /* MapManaging.swift in Sources */,
 				F530D6081F0F937700C1E2B6 /* LocationManager.swift in Sources */,
 				F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */,
 				F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */,
 				F580BB3E1F1CCDF3008AF04A /* Spinners.swift in Sources */,
+				F571C2151F20C5E400DBE068 /* LoadPostObjects.swift in Sources */,
 				F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */,
 				F52D7C931F160B4A001062F9 /* Constants.swift in Sources */,
 			);

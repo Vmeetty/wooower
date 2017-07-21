@@ -8,11 +8,45 @@
 
 import Foundation
 import Parse
+import MapKit
 
 class FetchingPosts {
     
+    var postObjects:[PFObject]?
+    
     static let sharedInstance = FetchingPosts()
     private init () {}
+    
+    func fetchPosts (complition: @escaping ([PFObject]?, [Post]?, Bool, Error?)->()) {
+        let query = PFQuery(className: postParse)
+        query.includeKey(postUser)
+        query.order(byAscending: postCreatedAt)
+        kUserInitiatedGQ.async {
+            do {
+                let objects = try query.findObjects()
+                kMainQueue.async {
+                    if objects.count == 0 {
+                        complition(nil, nil, false, nil)
+                    } else {
+                        self.fetchPosts(objects: objects, complition: { (posts, objects, error) in
+                            if let objects = objects, let posts = posts {
+                                complition(objects, posts, true, nil)
+                            }
+                        })
+                    }
+                }
+            } catch {
+                kMainQueue.async {
+                    Spinners.sharedInstance.removeLoadingScreen()
+//                    Spinners.sharedInstance.setCapView(sender: self, complition: { (labelText, view) in
+//                        labelText.text = "Unknown error"
+//                        view.addSubview(labelText)
+//                        self.myTableView.addSubview(view)
+//                    })
+                }
+            }
+        }
+    }
     
     
     func fetchPosts (objects: [PFObject], complition: @escaping ([Post]?, [PFObject]?, Error?) -> ()) {

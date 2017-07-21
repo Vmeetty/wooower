@@ -28,8 +28,6 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     func displayProfileButton () {
@@ -53,7 +51,25 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         displayProfileButton()
         Spinners.sharedInstance.setLoadingScreen(sender: self)
-        fetchPosts()
+        FetchingPosts.sharedInstance.fetchPosts { (objectsArray, postsArray, flag, error) in
+            if flag {
+                if let objects = objectsArray, let posts = postsArray {
+                    self.objects = objects
+                    self.post = posts
+                    self.myTableView.reloadData()
+                    Spinners.sharedInstance.removeLoadingScreen()
+                    Spinners.sharedInstance.removeCapView()
+                }
+            } else {
+                Spinners.sharedInstance.removeLoadingScreen()
+                Spinners.sharedInstance.setCapView(sender: self, complition: { (labelText, view) in
+                    labelText.text = "Uh Oh! There are no events still :("
+                    view.addSubview(labelText)
+                    self.myTableView.addSubview(view)
+                })
+            }
+            
+        }
     }
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
@@ -65,6 +81,8 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
         }
         
     }
+    
+    
     
     @IBAction func createAction(_ sender: UIButton) {
         if PFUser.current() == nil {
@@ -84,10 +102,6 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
                     let object = objects[indexPath.row]
                     activityVC.activityItem = object
                 }
-            }
-        } else if segue.identifier == mapSegue {
-            if let mapVC = segue.destination as? MapViewController {
-                mapVC.postObjects = objects
             }
         } else if segue.identifier == profileSegueID {
             if let profileVC = segue.destination as? ProfileViewController {
@@ -145,53 +159,8 @@ extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
     
 }
 
-extension MasterViewController {
-    
-    func fetchPosts () {
-        let query = PFQuery(className: postParse)
-        query.includeKey(postUser)
-        query.order(byAscending: postCreatedAt)
-        kUserInitiatedGQ.async {
-            do {
-                let objects = try query.findObjects()
-                if objects.count == 0 {
-                    kMainQueue.async {
-                        Spinners.sharedInstance.removeLoadingScreen()
-                        Spinners.sharedInstance.setCapView(sender: self, complition: { (labelText, view) in
-                            labelText.text = "Uh Oh! There are no events still :("
-                            view.addSubview(labelText)
-                            self.myTableView.addSubview(view)
-                        })
-                    }
-                    
-                }
-                kMainQueue.async {
-                    FetchingPosts.sharedInstance.fetchPosts(objects: objects, complition: { (posts, objects, error) in
-                        if let posts = posts, let objects = objects {
-                            self.objects = objects
-                            self.post = posts
-                            self.myTableView.reloadData()
-                            Spinners.sharedInstance.removeLoadingScreen()
-                            Spinners.sharedInstance.removeCapView()
-                        }
-                    })
-                }
-                
-            } catch {
-                kMainQueue.async {
-                    Spinners.sharedInstance.removeLoadingScreen()
-                    Spinners.sharedInstance.setCapView(sender: self, complition: { (labelText, view) in
-                        labelText.text = "Unknown error"
-                        view.addSubview(labelText)
-                        self.myTableView.addSubview(view)
-                    })
-                }
-            }
-        }
-    }
-    
-    
-}
+
+
 
 
 
