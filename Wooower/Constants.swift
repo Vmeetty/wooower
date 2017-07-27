@@ -27,6 +27,11 @@ let allCommentCellID = "allCommentCellID"
 // vc IDs
 let activityViewController = "ActivityViewController"
 
+// storyboards IDs
+let tabBarID = "tabBarController"
+let addViewControllerID = "AddViewControllerID"
+let feedVCID = "FeedVCID"
+
 // segue IDs
 let profileSegueID = "ProfileViewController"
 let allCommentsSegue = "AllCommentsViewController"

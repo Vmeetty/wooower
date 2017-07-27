@@ -11,6 +11,10 @@ import Parse
 import ParseUI
 import MapKit
 
+//protocol ReloadWhenSave {
+//    func reloadMyTableView()
+//}
+
 class AddViewController: UIViewController {
 
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -20,6 +24,7 @@ class AddViewController: UIViewController {
     var latitude: Double = 0
     var longitude: Double = 0
     var coreLocationManager = CLLocationManager()
+//    var delegate: ReloadWhenSave?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,11 +48,12 @@ class AddViewController: UIViewController {
             post[postPicture] = file
         }
         post.saveEventually()
-        self.dismiss(animated: true, completion: nil)
+        tabBarController?.selectedIndex = 0
+//        delegate?.reloadMyTableView()
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+        tabBarController?.selectedIndex = 0
     }
 
     @IBAction func addPhotoAction(_ sender: UIButton) {

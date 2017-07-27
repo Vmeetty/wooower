@@ -144,7 +144,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
 }
 
-extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
+extension MasterViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return post.count
@@ -157,6 +157,19 @@ extension MasterViewController: UITableViewDataSource, UITabBarDelegate {
         return cell!
     }
     
+}
+
+extension MasterViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if PFUser.current() == nil {
+            let alert = UIAlertController(title: "Log in for this", message: "To create activity you should be sign up", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Sign in", style: .default, handler: { (action) in
+                self.showLoginFormAction(UIBarButtonItem())
+            })
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 

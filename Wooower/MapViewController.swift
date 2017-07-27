@@ -31,13 +31,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 })
             }
         }
+        
+        if let location = location {
+            MapManaging.sharedInstance.setRegionOnMap(sender: self, location: location)
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         coreLocationManager.delegate = self
         coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest
         coreLocationManager.requestWhenInUseAuthorization()
         coreLocationManager.startUpdatingLocation()
-        if let location = location {
-            MapManaging.sharedInstance.setRegionOnMap(sender: self, location: location)
-        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        coreLocationManager.stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
