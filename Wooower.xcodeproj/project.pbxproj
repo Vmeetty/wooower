@@ -29,6 +29,7 @@
 		F54BFDD21F01029B008A9CAC /* EditDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BFDD11F01029B008A9CAC /* EditDataBase.swift */; };
 		F5587EFA1EE1565100A363FB /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587EF91EE1565100A363FB /* AddViewController.swift */; };
 		F580BB3E1F1CCDF3008AF04A /* Spinners.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580BB3D1F1CCDF3008AF04A /* Spinners.swift */; };
+		F5873BDA1F2A833400B702B4 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5873BD91F2A833400B702B4 /* Map.swift */; };
 		F5A5051C1EEFE4B300F7D219 /* AllCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A5051B1EEFE4B300F7D219 /* AllCommentsViewController.swift */; };
 		F5A5051E1EEFE6C500F7D219 /* AllCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */; };
 		F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CCB5331EDFFFAB00B0F030 /* Post.swift */; };
@@ -67,6 +68,7 @@
 		F54BFDD11F01029B008A9CAC /* EditDataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDataBase.swift; sourceTree = "<group>"; };
 		F5587EF91EE1565100A363FB /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		F580BB3D1F1CCDF3008AF04A /* Spinners.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spinners.swift; sourceTree = "<group>"; };
+		F5873BD91F2A833400B702B4 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		F5A5051B1EEFE4B300F7D219 /* AllCommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCommentsViewController.swift; sourceTree = "<group>"; };
 		F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllCommentTableViewCell.swift; sourceTree = "<group>"; };
 		F5CCB5331EDFFFAB00B0F030 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				F5CCB5351EE005E000B0F030 /* TableViewCell.swift */,
 				F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */,
 				F5A5051D1EEFE6C500F7D219 /* AllCommentTableViewCell.swift */,
+				F5873BD91F2A833400B702B4 /* Map.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				F536C5281EE69F1400B3BF1C /* ActivityViewController.swift in Sources */,
 				F52A50AC1EEAA10800B4BA1C /* ConfigCommentView.swift in Sources */,
 				F5CCB5341EDFFFAB00B0F030 /* Post.swift in Sources */,
+				F5873BDA1F2A833400B702B4 /* Map.swift in Sources */,
 				F5A5051E1EEFE6C500F7D219 /* AllCommentTableViewCell.swift in Sources */,
 				F5DA0FEA1EE57E6900E8ED97 /* ObservKeybordView.swift in Sources */,
 				F54BFDD21F01029B008A9CAC /* EditDataBase.swift in Sources */,

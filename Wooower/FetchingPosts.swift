@@ -28,7 +28,10 @@ class FetchingPosts {
                     if objects.count == 0 {
                         complition(nil, nil, false, nil)
                     } else {
-                        self.fetchPosts(objects: objects, complition: { (posts, objects, error) in
+                        let sortedObjects = objects.sorted(by: { (obj1, obj2) -> Bool in
+                            return obj1.createdAt! > obj2.createdAt!
+                        })
+                        self.fetchPosts(objects: sortedObjects, complition: { (posts, objects, error) in
                             if let objects = objects, let posts = posts {
                                 complition(objects, posts, true, nil)
                             }

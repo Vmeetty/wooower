@@ -11,17 +11,33 @@ import MapKit
 import Parse
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     var coreLocationManager = CLLocationManager()
-    @IBOutlet weak var mapView: MKMapView!
     var location: CLLocation?
+    @IBOutlet weak var mapView: MKMapView! {
+        didSet {
+            if let location = location {
+                MapManaging.sharedInstance.setRegionOnMap(sender: self, location: location)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        coreLocationManager.delegate = self
+        coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest
+        coreLocationManager.requestWhenInUseAuthorization()
+        coreLocationManager.startUpdatingLocation()
         FetchingPosts.sharedInstance.fetchPosts { (objects, posts, flag, error) in
             if flag {
                 if let objects = objects {
-                  MapManaging.sharedInstance.addPinsOnMap(sender: self, objects: objects)
+                    MapManaging.sharedInstance.addPinsOnMap(sender: self, objects: objects)
                 }
             } else {
                 Spinners.sharedInstance.setCapView(sender: self, complition: { (labelText, view) in
@@ -31,18 +47,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 })
             }
         }
-        
-        if let location = location {
-            MapManaging.sharedInstance.setRegionOnMap(sender: self, location: location)
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        coreLocationManager.delegate = self
-        coreLocationManager.desiredAccuracy = kCLLocationAccuracyBest
-        coreLocationManager.requestWhenInUseAuthorization()
-        coreLocationManager.startUpdatingLocation()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
