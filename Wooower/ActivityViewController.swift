@@ -36,6 +36,8 @@ class ActivityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Spinners.sharedInstance.loadingView.isHidden = false
+        Spinners.sharedInstance.setLoadingScreen(sender: self)
         configView()
         scrollView.keyboardDismissMode = .onDrag
         gestureRecognize()
@@ -54,7 +56,17 @@ class ActivityViewController: UIViewController {
     
     func configView () {
         
-        ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
+//        ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
+        ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self) { (createdAt, description, userName, userPhoto, activityPicture) in
+            self.dateLabel.text = createdAt
+            self.descriptionLabel.text = description
+            self.nameLabel.text = userName
+            self.userPhotoImageView.image = userPhoto
+            self.pictureImageView.image = activityPicture
+            Spinners.sharedInstance.removeLoadingScreen()
+        }
+        
+        
         ConfigCommentView.sharedInstance.configComments(object: activityItem,
                                                          runQueue: DispatchQueue.global(qos: .userInitiated),
                                                          complitionQueue: DispatchQueue.main) { (commentsArray, error) in

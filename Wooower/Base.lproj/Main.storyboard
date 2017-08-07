@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="83" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H10-Av-fBa">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="127" width="375" height="491"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="wooowerCell" rowHeight="83" id="xwe-T9-NxJ" customClass="TableViewCell" customModule="Wooower" customModuleProvider="target">
@@ -51,7 +51,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohr-Jr-EPq">
-                                                    <rect key="frame" x="80" y="13.5" width="287" height="14.5"/>
+                                                    <rect key="frame" x="80" y="13" width="287" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -93,13 +93,38 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="oGE-Bn-BQb"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wish-list" translatesAutoresizingMaskIntoConstraints="NO" id="jMU-rt-PSu">
+                                <rect key="frame" x="8" y="80" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="3dF-6l-suS"/>
+                                    <constraint firstAttribute="width" constant="24" id="aZh-5x-R4O"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q6W-At-23z">
+                                <rect key="frame" x="8" y="118" width="359" height="1"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You see new events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdV-yc-LfW">
+                                <rect key="frame" x="40" y="83" width="128" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="GdV-yc-LfW" firstAttribute="leading" secondItem="jMU-rt-PSu" secondAttribute="trailing" constant="8" id="GYY-eT-WkP"/>
+                            <constraint firstItem="q6W-At-23z" firstAttribute="top" secondItem="GdV-yc-LfW" secondAttribute="bottom" constant="18" id="OuS-LF-sbx"/>
+                            <constraint firstAttribute="trailing" secondItem="q6W-At-23z" secondAttribute="trailing" constant="8" id="PwF-rX-Fm4"/>
+                            <constraint firstItem="H10-Av-fBa" firstAttribute="top" secondItem="q6W-At-23z" secondAttribute="bottom" constant="8" symbolic="YES" id="SG4-zL-uPb"/>
                             <constraint firstAttribute="trailing" secondItem="H10-Av-fBa" secondAttribute="trailing" id="bwb-Xe-n9R"/>
-                            <constraint firstItem="H10-Av-fBa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="d6Y-Xx-8q3"/>
+                            <constraint firstItem="H10-Av-fBa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="63" id="d6Y-Xx-8q3"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H10-Av-fBa" secondAttribute="bottom" id="fPj-xT-wPH"/>
+                            <constraint firstItem="GdV-yc-LfW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="19" id="gLQ-ue-AZs"/>
+                            <constraint firstItem="jMU-rt-PSu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="nNt-Au-Agj"/>
                             <constraint firstItem="H10-Av-fBa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="oGG-pF-1Rs"/>
+                            <constraint firstItem="q6W-At-23z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="qzr-y4-mYk"/>
+                            <constraint firstItem="jMU-rt-PSu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="zNa-0p-KxA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Events feed" id="FzX-DL-dkd">
@@ -301,7 +326,7 @@
                                                         <rect key="frame" x="0.0" y="28" width="343" height="61"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kYq-a7-gav" id="lN4-Ff-aeM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="61"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXj-pF-nWB">
@@ -765,5 +790,6 @@
         <image name="list (1)" width="32" height="32"/>
         <image name="placeholder" width="32" height="32"/>
         <image name="send-2" width="16" height="16"/>
+        <image name="wish-list" width="16" height="16"/>
     </resources>
 </document>
