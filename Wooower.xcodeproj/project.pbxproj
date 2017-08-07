@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A5F98D40A4ADF1818181698 /* Pods_Wooower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D5C8AAB5FD6D108A31AC635 /* Pods_Wooower.framework */; };
+		F51F96201F3042520057261A /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F961F1F3042520057261A /* CustomTabBarController.swift */; };
 		F52A50A61EEA90CF00B4BA1C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A51EEA90CF00B4BA1C /* Comment.swift */; };
 		F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */; };
 		F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */; };
@@ -45,6 +46,7 @@
 		2D5C8AAB5FD6D108A31AC635 /* Pods_Wooower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wooower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82E156DE0D59E4F679939049 /* Pods-Wooower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wooower.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wooower/Pods-Wooower.debug.xcconfig"; sourceTree = "<group>"; };
 		DF070D1FCE628D3A1DEED4EC /* Pods-Wooower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wooower.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wooower/Pods-Wooower.release.xcconfig"; sourceTree = "<group>"; };
+		F51F961F1F3042520057261A /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		F52A50A51EEA90CF00B4BA1C /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		F52A50A71EEA916C00B4BA1C /* CommentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewCell.swift; sourceTree = "<group>"; };
 		F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigActivityView.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				F5CCB5331EDFFFAB00B0F030 /* Post.swift */,
 				F52D7C941F16100C001062F9 /* Profile.swift */,
 				F52A50A51EEA90CF00B4BA1C /* Comment.swift */,
+				F51F961F1F3042520057261A /* CustomTabBarController.swift */,
 				F52A50A91EEA94B700B4BA1C /* ConfigActivityView.swift */,
 				F52A50AB1EEAA10800B4BA1C /* ConfigCommentView.swift */,
 				F5DAD2EC1F14BFE100A6E9B9 /* CurrentUserConfig.swift */,
@@ -347,6 +350,7 @@
 				F530D6081F0F937700C1E2B6 /* LocationManager.swift in Sources */,
 				F52A50AA1EEA94B700B4BA1C /* ConfigActivityView.swift in Sources */,
 				F530DD801EDEE81700A4E235 /* AppDelegate.swift in Sources */,
+				F51F96201F3042520057261A /* CustomTabBarController.swift in Sources */,
 				F580BB3E1F1CCDF3008AF04A /* Spinners.swift in Sources */,
 				F52A50A81EEA916C00B4BA1C /* CommentsTableViewCell.swift in Sources */,
 				F52D7C931F160B4A001062F9 /* Constants.swift in Sources */,

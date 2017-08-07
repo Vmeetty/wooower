@@ -68,7 +68,6 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
                     self.myTableView.addSubview(view)
                 })
             }
-            
         }
     }
     

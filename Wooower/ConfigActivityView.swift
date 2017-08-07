@@ -33,6 +33,8 @@ class ConfigActivityView {
                             userPhoto.getDataInBackground(block: { (data, error) in
                                 if let imageData = UIImage(data: data!) {
                                     activityVC.userPhotoImageView.image = imageData
+                                    activityVC.avatarView.layer.cornerRadius = 40
+                                    activityVC.avatarView.clipsToBounds = true
                                 }
                             })
                         }

@@ -27,7 +27,8 @@ class TableViewCell: UITableViewCell {
         descriptionTextView.text = post?.description
         nameLabel.text = post?.name
         avatarImage.image = post?.userPhoto
-        avatarView.layer.cornerRadius = 40
+        avatarView.layer.cornerRadius = 30
+        avatarView.clipsToBounds = true
     }
     
 
