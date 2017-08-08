@@ -44,6 +44,8 @@ class ActivityViewController: UIViewController {
         gestureRecognize()
         observKeybordView()
         myCommentTableView.isHidden = true
+        myCommentTableView.rowHeight = UITableViewAutomaticDimension
+        myCommentTableView.estimatedRowHeight = 140
     }
     
     func gestureRecognize () {
@@ -56,8 +58,6 @@ class ActivityViewController: UIViewController {
     }
     
     func configView () {
-        
-//        ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
         ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self) { (createdAt, description, userName, userPhoto, activityPicture, flag) in
             self.dateLabel.text = createdAt
             self.descriptionLabel.text = description
@@ -69,8 +69,6 @@ class ActivityViewController: UIViewController {
             self.avatarView.clipsToBounds = true
             Spinners.sharedInstance.removeLoadingScreen()
         }
-        
-        
         ConfigCommentView.sharedInstance.configComments(object: activityItem,
                                                          runQueue: DispatchQueue.global(qos: .userInitiated),
                                                          complitionQueue: DispatchQueue.main) { (commentsArray, error) in

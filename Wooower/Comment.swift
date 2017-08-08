@@ -13,10 +13,12 @@ class Comment {
     
     let name: String
     let text: String
+    let userPhoto: UIImage
     
-    init(name: String, text: String) {
+    init(name: String, text: String, userPhoto: UIImage) {
         self.name = name
         self.text = text
+        self.userPhoto = userPhoto
     }
     
 }

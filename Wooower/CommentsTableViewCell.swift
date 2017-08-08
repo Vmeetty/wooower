@@ -25,6 +25,9 @@ class CommentsTableViewCell: UITableViewCell {
     func configCommentCell () {
         commentNameLabel.text = comment?.name
         commentTextLabel.text = comment?.text
+        commentAvatarImageView.image = comment?.userPhoto
+        commentAvatarView.layer.cornerRadius = 16
+        commentAvatarView.clipsToBounds = true
     }
 
 }
