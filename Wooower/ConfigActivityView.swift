@@ -18,7 +18,8 @@ class ConfigActivityView {
         _ description: String,
         _ userName: String,
         _ userPhoto: UIImage,
-        _ activityPicture: UIImage) -> () ) {
+        _ activityPicture: UIImage,
+        _ flag: Bool) -> () ) {
         
         
         
@@ -49,6 +50,8 @@ class ConfigActivityView {
                             } catch let error {
                                 print(error)
                             }
+                        } else {
+                            eventPicture = UIImage(named: "123")
                         }
                         if let imageFile = activity[postPicture] as? PFFile {
                             do {
@@ -59,11 +62,13 @@ class ConfigActivityView {
                             } catch let error {
                                 print(error)
                             }
+                        } else {
+                            eventPicture = UIImage(named: "123")
                         }
                     }
                     kMainQueue.async {
                         if let avatarImage = avatar, let picture = eventPicture {
-                            complition(postDate, descriptionLabel, name, avatarImage, picture)
+                            complition(postDate, descriptionLabel, name, avatarImage, picture, true)
                         }
                     }
                 }

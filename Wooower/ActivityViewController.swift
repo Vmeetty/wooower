@@ -23,7 +23,8 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var pictureImageView: UIImageView!
-    @IBOutlet weak var avatarView: UIView!    
+    @IBOutlet weak var avatarView: UIView!
+    @IBOutlet weak var userPhotoConteinerView: UIView!
     @IBOutlet weak var buttomCommentViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var userPhotoImageView: UIImageView!
     
@@ -57,12 +58,15 @@ class ActivityViewController: UIViewController {
     func configView () {
         
 //        ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self)
-        ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self) { (createdAt, description, userName, userPhoto, activityPicture) in
+        ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self) { (createdAt, description, userName, userPhoto, activityPicture, flag) in
             self.dateLabel.text = createdAt
             self.descriptionLabel.text = description
             self.nameLabel.text = userName
             self.userPhotoImageView.image = userPhoto
             self.pictureImageView.image = activityPicture
+            self.avatarView.layer.cornerRadius = 40
+            self.userPhotoConteinerView.layer.cornerRadius = 43
+            self.avatarView.clipsToBounds = true
             Spinners.sharedInstance.removeLoadingScreen()
         }
         
