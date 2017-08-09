@@ -10,13 +10,12 @@ import UIKit
 import Parse
 
 class ActivityViewController: UIViewController {
-
+    
     var activityItem: PFObject? {
         didSet {
             configView ()
         }
     }
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var commentText: UITextView!
     @IBOutlet var myCommentTableView: UITableView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -25,13 +24,21 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var avatarView: UIView!
     @IBOutlet weak var userPhotoConteinerView: UIView!
-    @IBOutlet weak var buttomCommentViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var userPhotoImageView: UIImageView!
-    
+    @IBOutlet weak var sendCommentViewConstraint: NSLayoutConstraint!
     var comments: [Comment]? = [] {
         didSet {
             myCommentTableView.reloadData()
             myCommentTableView.isHidden = false
+        }
+    }
+    @IBOutlet weak var showAllCommentsButton: UIButton! {
+        didSet {
+            if oldValue == nil {
+                self.showAllCommentsButton.layer.borderWidth = 0.3
+                self.showAllCommentsButton.layer.borderColor = UIColor(red: 233/255, green: 235/255, blue: 238/255, alpha: 1.0).cgColor
+                self.showAllCommentsButton.backgroundColor = UIColor(red: 246/255, green: 247/255, blue: 249/255, alpha: 1.0)
+            }
         }
     }
     
@@ -40,12 +47,14 @@ class ActivityViewController: UIViewController {
         Spinners.sharedInstance.loadingView.isHidden = false
         Spinners.sharedInstance.setLoadingScreen(sender: self)
         configView()
-        scrollView.keyboardDismissMode = .onDrag
+        //        scrollView.keyboardDismissMode = .onDrag
         gestureRecognize()
         observKeybordView()
         myCommentTableView.isHidden = true
         myCommentTableView.rowHeight = UITableViewAutomaticDimension
         myCommentTableView.estimatedRowHeight = 140
+        myCommentTableView.separatorStyle = .none
+        myCommentTableView.tableFooterView = UIView()
     }
     
     func gestureRecognize () {
@@ -58,26 +67,27 @@ class ActivityViewController: UIViewController {
     }
     
     func configView () {
-        ConfigActivityView.sharedInstance.configView(activity: activityItem, activityVC: self) { (createdAt, description, userName, userPhoto, activityPicture, flag) in
-            self.dateLabel.text = createdAt
-            self.descriptionLabel.text = description
-            self.nameLabel.text = userName
-            self.userPhotoImageView.image = userPhoto
-            self.pictureImageView.image = activityPicture
-            self.avatarView.layer.cornerRadius = 40
-            self.userPhotoConteinerView.layer.cornerRadius = 43
-            self.avatarView.clipsToBounds = true
-            Spinners.sharedInstance.removeLoadingScreen()
+        ConfigActivityView.sharedInstance.configView(activity: activityItem,
+                                                     activityVC: self) { (createdAt, description, userName, userPhoto, activityPicture, flag) in
+                                                        self.dateLabel.text = createdAt
+                                                        self.descriptionLabel.text = description
+                                                        self.nameLabel.text = userName
+                                                        self.userPhotoImageView.image = userPhoto
+                                                        self.pictureImageView.image = activityPicture
+                                                        self.avatarView.layer.cornerRadius = 40
+                                                        self.userPhotoConteinerView.layer.cornerRadius = 43
+                                                        self.avatarView.clipsToBounds = true
+                                                        Spinners.sharedInstance.removeLoadingScreen()
         }
+        
         ConfigCommentView.sharedInstance.configComments(object: activityItem,
-                                                         runQueue: DispatchQueue.global(qos: .userInitiated),
-                                                         complitionQueue: DispatchQueue.main) { (commentsArray, error) in
+                                                        runQueue: DispatchQueue.global(qos: .userInitiated),
+                                                        complitionQueue: DispatchQueue.main) { (commentsArray, error) in
                                                             if let comments = commentsArray {
                                                                 self.comments = comments
+                                                                self.showAllCommentsButton.setTitle("Show all comments (\(comments.count))", for: .normal)
                                                             }
         }
-        
-        
     }
     
     func observKeybordView () {
@@ -87,10 +97,10 @@ class ActivityViewController: UIViewController {
     }
     
     @objc func upperHandlerObserver (_ notification: Notification) {
-        buttomCommentViewConstraint.constant = getHeigthOfKeyboard(notification)
+        sendCommentViewConstraint.constant -= getHeigthOfKeyboard(notification)
     }
     @objc func downHandlerObserver (_ notification: Notification) {
-        buttomCommentViewConstraint.constant -= getHeigthOfKeyboard(notification)
+        sendCommentViewConstraint.constant = 0
     }
     
     func getHeigthOfKeyboard (_ notification: Notification) -> CGFloat {

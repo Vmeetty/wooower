@@ -20,7 +20,7 @@ class ObservKeybordView {
     }
     @objc func handlerObserver (_ notification: Notification, observer: Any) {
         if let activityVC = observer as? ActivityViewController {
-            activityVC.buttomCommentViewConstraint.constant = KeyboardSize.getHeigthOfKeyboard(notification)
+            activityVC.sendCommentViewConstraint.constant = KeyboardSize.getHeigthOfKeyboard(notification)
         }
     }
 }

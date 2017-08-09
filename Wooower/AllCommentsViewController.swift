@@ -25,6 +25,9 @@ class AllCommentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
+        myTableView.rowHeight = UITableViewAutomaticDimension
+        myTableView.estimatedRowHeight = 800
+        myTableView.tableFooterView = UIView()
     }
     
     func configView () {
@@ -35,6 +38,7 @@ class AllCommentsViewController: UIViewController {
                                                                 self.comments = comments
                                                             }
         }
+        
     }
 
 }

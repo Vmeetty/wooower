@@ -13,14 +13,14 @@ import Parse
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     var coreLocationManager = CLLocationManager()
-    var location: CLLocation?
-    @IBOutlet weak var mapView: MKMapView! {
+    var location: CLLocation? {
         didSet {
-            if let location = location {
-                MapManaging.sharedInstance.setRegionOnMap(sender: self, location: location)
+            if oldValue == nil {
+               MapManaging.sharedInstance.setRegionOnMap(sender: self, location: location!) 
             }
         }
     }
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +57,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         location = locations[0]
         mapView.showsUserLocation = true
+        
     }
     
 }

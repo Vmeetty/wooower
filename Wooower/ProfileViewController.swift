@@ -32,6 +32,8 @@ class ProfileViewController: UIViewController {
         commentsCountLabel.text = profile?.commentsCount
         userPhotoImageView.image = profile?.userPhoto
         userName.text = profile?.userName
+        photoView.layer.cornerRadius = 50
+        photoView.clipsToBounds = true
     }
 
 }

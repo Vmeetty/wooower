@@ -24,6 +24,9 @@ class AllCommentTableViewCell: UITableViewCell {
     func configCommentCell () {
         commentNameLabel.text = comment?.name
         commentTextLabel.text = comment?.text
+        commentAvatarImageView.image = comment?.userPhoto
+        commentAvatarView.layer.cornerRadius = 20
+        commentAvatarView.clipsToBounds = true
     }
       
     override func awakeFromNib() {
