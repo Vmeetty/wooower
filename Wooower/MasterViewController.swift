@@ -28,6 +28,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     func displayProfileButton () {
@@ -36,7 +37,27 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
         } else {
             let exitButton = UIBarButtonItem(title: "Exit", style: .plain, target: self, action: #selector(lofOut))
             navigationItem.leftBarButtonItem = exitButton
-            enterFB.title = "Profile"
+            let view = UIView()
+            view.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+            view.backgroundColor = UIColor.white
+            view.layer.cornerRadius = 16
+            view.clipsToBounds = true
+            view.layer.borderWidth = 1
+            view.layer.borderColor = UIColor.white.cgColor
+            let button = UIButton()
+            button.contentMode = .scaleAspectFill
+            button.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+            CurrentUserConfig.sharedInstance.fetchUser(pfUser: PFUser.current(), complition: { (dictionary) in
+                if dictionary != nil {
+                    if let photo = dictionary?[userFbPhoto] as? UIImage {
+                        button.setImage(photo, for: .normal)
+                    } else {
+                        button.setImage(UIImage(named: "123"), for: .normal)
+                    }
+                    view.addSubview(button)
+                    self.enterFB.customView = view
+                }
+            })
         }
     }
     
@@ -45,7 +66,6 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
         PFUser.logOut()
         enterFB.title = "Enter"
         navigationItem.leftBarButtonItem = nil
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,8 +100,6 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
         }
         
     }
-    
-    
     
     @IBAction func createAction(_ sender: UIButton) {
         if PFUser.current() == nil {
