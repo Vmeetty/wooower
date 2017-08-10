@@ -47,9 +47,11 @@ class ActivityViewController: UIViewController {
         Spinners.sharedInstance.loadingView.isHidden = false
         Spinners.sharedInstance.setLoadingScreen(sender: self)
         configView()
+        commentText.delegate = self
         //        scrollView.keyboardDismissMode = .onDrag
         gestureRecognize()
         observKeybordView()
+        configPlaceholder()
         myCommentTableView.isHidden = true
         myCommentTableView.rowHeight = UITableViewAutomaticDimension
         myCommentTableView.estimatedRowHeight = 140
@@ -127,21 +129,33 @@ class ActivityViewController: UIViewController {
     }
     
     @IBAction func sendCommentAction(_ sender: UIButton) {
-        view.endEditing(true)
+        
         let comment = PFObject(className: commentParse)
         comment[commentTxt] = commentText.text
         comment[commentUser] = PFUser.current()
         comment[commentPost] = self.activityItem
         comment.saveInBackground { (succes, error) in
+            self.view.endEditing(true)
+            self.configPlaceholder()
             let postCommentRelation = self.activityItem?.relation(forKey: postComments)
             postCommentRelation?.add(comment)
             if let user = self.activityItem?[postUser] as? PFUser {
                 let userCommentRelation = user.relation(forKey: userComments)
-                userCommentRelation.add(comment)
+                kMainQueue.async {
+                    userCommentRelation.add(comment)
+                    self.activityItem?.saveInBackground(block: { (succes, error) in
+                        ConfigCommentView.sharedInstance.configComments(object: self.activityItem,
+                                                                        runQueue: DispatchQueue.global(qos: .userInitiated),
+                                                                        complitionQueue: DispatchQueue.main) { (commentsArray, error) in
+                                                                            if let comments = commentsArray {
+                                                                                self.comments = comments
+                                                                                self.showAllCommentsButton.setTitle("Show all comments (\(comments.count))", for: .normal)
+                                                                            }
+                        }
+                        self.myCommentTableView.reloadData()
+                    })
+                }
             }
-            self.activityItem?.saveInBackground(block: { (succes, error) in
-                self.myCommentTableView.reloadData()
-            })
         }
     }
     
@@ -165,6 +179,21 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
             cell.comment = comments[indexPath.row]
         }
         return cell
+    } 
+}
+
+extension ActivityViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func configPlaceholder () {
+        commentText.text = "Write your text..."
+        commentText.textColor = UIColor.lightGray
     }
     
 }

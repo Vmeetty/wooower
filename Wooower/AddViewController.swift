@@ -23,7 +23,9 @@ class AddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionTextView.becomeFirstResponder()
+        descriptionTextView.textColor = UIColor.lightGray
+        descriptionTextView.delegate = self
+        descriptionTextView.text = "Write here..."
         observKeybordView()
         // optimize locationManager configuration
 //        LocationDefining.sharedInstance.configLocationManager(sender: self)
@@ -45,12 +47,18 @@ class AddViewController: UIViewController {
         post.saveEventually { (succes, error) in
             if succes {
                 self.tabBarController?.selectedIndex = 0
+                self.descriptionTextView.text = "Write here..."
+                self.descriptionTextView.textColor = UIColor.lightGray
+                self.imageBox.image = nil
             }
         }
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
         tabBarController?.selectedIndex = 0
+        descriptionTextView.text = "Write here..."
+        descriptionTextView.textColor = UIColor.lightGray
+        imageBox.image = nil  
     }
 
     @IBAction func addPhotoAction(_ sender: UIButton) {
@@ -106,7 +114,15 @@ extension AddViewController: CLLocationManagerDelegate {
     
 }
 
-
+extension AddViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+}
 
 
 

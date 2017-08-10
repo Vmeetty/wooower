@@ -63,7 +63,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
             } else {
                 Spinners.sharedInstance.removeLoadingScreen()
                 Spinners.sharedInstance.setCapView(sender: self, complition: { (labelText, view) in
-                    labelText.text = "Uh Oh! There are no events still :("
+                    labelText.text = "Uh Oh! There are no activities still :("
                     view.addSubview(labelText)
                     self.myTableView.addSubview(view)
                 })

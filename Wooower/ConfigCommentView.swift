@@ -24,8 +24,11 @@ class ConfigCommentView {
         runQueue.async {
             do {
                 if let objects = try query?.findObjects() {
+                    let sortedObjects = objects.sorted(by: { (obj1, obj2) -> Bool in
+                        return obj1.createdAt! > obj2.createdAt!
+                    })
                     var commentsArray: [Comment] = []
-                    objects.forEach({ (obj) in
+                    sortedObjects.forEach({ (obj) in
                         if let user = obj[commentUser] as? PFUser {
                             let userName = user.username
                             let text = obj[commentTxt] as! String
