@@ -72,6 +72,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     func lofOut () {
         PFUser.logOut()
+        enterFB.customView = nil
         enterFB.title = "Enter"
         navigationItem.leftBarButtonItem = nil
     }
@@ -102,7 +103,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
         if PFUser.current() == nil {
             let pfUser = PFUser()
-            LogInAndAddToData.sharedInstance.fetchingFbData3(pfUser: pfUser, sender: self)
+            LogInAndAddToData.sharedInstance.showLoginForm(pfUser: pfUser, sender: self)
         } else {
             performSegue(withIdentifier: profileSegueID, sender: self)
         }
@@ -111,12 +112,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     @IBAction func createAction(_ sender: UIButton) {
         if PFUser.current() == nil {
-            let alert = UIAlertController(title: "Log in for this", message: "To create activity you should be sign up", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Sign in", style: .default, handler: { (action) in
-                self.showLoginFormAction(UIBarButtonItem())
-            })
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            LogInAndAddToData.sharedInstance.configActionSheet(sender: self)
         }
     }
     

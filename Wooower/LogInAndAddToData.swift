@@ -18,9 +18,27 @@ class LogInAndAddToData {
     
     var file: PFFile?
     
-    func fetchingFbData3 (pfUser: PFUser, sender: Any) {
+    func configActionSheet (sender: UIViewController) {
+        let actionSheet = UIAlertController(title: alertTitle, message: alertMassage, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: alertActionTitle, style: .default, handler: { (action) in
+            let pfUser = PFUser()
+            LogInAndAddToData.sharedInstance.showLoginForm (pfUser: pfUser, sender: sender)
+        }))
+        actionSheet.addAction(UIAlertAction(title: cancelAction, style: .cancel, handler: { (cancelAction) in
+            if sender is AddViewController {
+                sender.tabBarController?.selectedIndex = 0
+            }
+        }))
+        sender.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func showLoginForm (pfUser: PFUser, sender: UIViewController) {
+        LogInAndAddToData.sharedInstance.fetchingFbData3 (pfUser: pfUser, sender: sender)
+    }
+    
+    func fetchingFbData3 (pfUser: PFUser, sender: UIViewController) {
         let manager = FBSDKLoginManager()
-        if let sender = sender as? MasterViewController {
+//        if let sender = sender as? MasterViewController {
             manager.logIn(withReadPermissions: ["public_profile", "user_friends", "email"], from: sender) { (result, error) in
                 let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large)"], httpMethod: "GET")
                 request?.start(completionHandler: { (connection, result, error) in
@@ -32,7 +50,7 @@ class LogInAndAddToData {
                     }
                 })
             }
-        }
+//        }
         
         
     }
@@ -58,8 +76,8 @@ class LogInAndAddToData {
                             let id : NSString = response["id"] as! NSString
                             pfUser["fbID"] = id
                             pfUser["fbPhoto"] = self.file
-//                            FBSDKAccessToken.setCurrent(nil)
-//                            FBSDKProfile.setCurrent(nil)
+                            //                            FBSDKAccessToken.setCurrent(nil)
+                            //                            FBSDKProfile.setCurrent(nil)
                             pfUser.signUpInBackground(block: { (succes, error) in
                                 if succes {
                                     if pfUser.isNew {
@@ -69,15 +87,15 @@ class LogInAndAddToData {
                                     }
                                 } else {
                                     print("you have error")
-//                                    PFFacebookUtils.linkUser(inBackground: pfUser, with: FBSDKAccessToken.current(), block: { (succes, error) in
-//                                        if error != nil {
-//                                            print("whatever error")
-//                                        } else if succes {
-//                                            print("user linked to existing")
-//                                        } else {
-//                                            print("nothing heppend :/")
-//                                        }
-//                                    })
+                                    //                                    PFFacebookUtils.linkUser(inBackground: pfUser, with: FBSDKAccessToken.current(), block: { (succes, error) in
+                                    //                                        if error != nil {
+                                    //                                            print("whatever error")
+                                    //                                        } else if succes {
+                                    //                                            print("user linked to existing")
+                                    //                                        } else {
+                                    //                                            print("nothing heppend :/")
+                                    //                                        }
+                                    //                                    })
                                 }
                             })
                         })

@@ -129,34 +129,38 @@ class ActivityViewController: UIViewController {
     }
     
     @IBAction func sendCommentAction(_ sender: UIButton) {
-        
-        let comment = PFObject(className: commentParse)
-        comment[commentTxt] = commentText.text
-        comment[commentUser] = PFUser.current()
-        comment[commentPost] = self.activityItem
-        comment.saveInBackground { (succes, error) in
-            self.view.endEditing(true)
-            self.configPlaceholder()
-            let postCommentRelation = self.activityItem?.relation(forKey: postComments)
-            postCommentRelation?.add(comment)
-            if let user = self.activityItem?[postUser] as? PFUser {
-                let userCommentRelation = user.relation(forKey: userComments)
-                kMainQueue.async {
-                    userCommentRelation.add(comment)
-                    self.activityItem?.saveInBackground(block: { (succes, error) in
-                        ConfigCommentView.sharedInstance.configComments(object: self.activityItem,
-                                                                        runQueue: DispatchQueue.global(qos: .userInitiated),
-                                                                        complitionQueue: DispatchQueue.main) { (commentsArray, error) in
-                                                                            if let comments = commentsArray {
-                                                                                self.comments = comments
-                                                                                self.showAllCommentsButton.setTitle("Show all comments (\(comments.count))", for: .normal)
-                                                                            }
-                        }
-                        self.myCommentTableView.reloadData()
-                    })
+        if PFUser.current() != nil {
+            let comment = PFObject(className: commentParse)
+            comment[commentTxt] = commentText.text
+            comment[commentUser] = PFUser.current()
+            comment[commentPost] = self.activityItem
+            comment.saveInBackground { (succes, error) in
+                self.view.endEditing(true)
+                self.configPlaceholder()
+                let postCommentRelation = self.activityItem?.relation(forKey: postComments)
+                postCommentRelation?.add(comment)
+                if let user = self.activityItem?[postUser] as? PFUser {
+                    let userCommentRelation = user.relation(forKey: userComments)
+                    kMainQueue.async {
+                        userCommentRelation.add(comment)
+                        self.activityItem?.saveInBackground(block: { (succes, error) in
+                            ConfigCommentView.sharedInstance.configComments(object: self.activityItem,
+                                                                            runQueue: DispatchQueue.global(qos: .userInitiated),
+                                                                            complitionQueue: DispatchQueue.main) { (commentsArray, error) in
+                                                                                if let comments = commentsArray {
+                                                                                    self.comments = comments
+                                                                                    self.showAllCommentsButton.setTitle("Show all comments (\(comments.count))", for: .normal)
+                                                                                }
+                            }
+                            self.myCommentTableView.reloadData()
+                        })
+                    }
                 }
             }
+        } else {
+            LogInAndAddToData.sharedInstance.configActionSheet(sender: self)
         }
+        
     }
     
 }
@@ -184,10 +188,16 @@ extension ActivityViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ActivityViewController: UITextViewDelegate {
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if PFUser.current() != nil {
+            if textView.textColor == UIColor.lightGray {
+                textView.text = nil
+                textView.textColor = UIColor.black
+            }
+            return true
+        } else {
+            LogInAndAddToData.sharedInstance.configActionSheet(sender: self)
+            return false
         }
     }
     

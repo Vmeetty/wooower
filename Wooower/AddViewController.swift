@@ -35,6 +35,12 @@ class AddViewController: UIViewController {
         coreLocationManager.startUpdatingLocation()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if PFUser.current() == nil {
+            LogInAndAddToData.sharedInstance.configActionSheet(sender: self)
+        }
+    }
+    
     @IBAction func saveAction(_ sender: UIBarButtonItem) {
         let post = PFObject(className: postParse)
         post[postDescription] = descriptionTextView.text

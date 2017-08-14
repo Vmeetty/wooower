@@ -68,6 +68,12 @@ let commentCreatedAt = "createdAt"
 //***** same as dataBase "User" class culomns, but also it has such keys as:
 let allUserComments = "allUserComments"
 
+// login alert constants
+let alertTitle = "Log in for this"
+let alertMassage = "To do this you should be loged in. Please, login."
+let alertActionTitle = "Sign in"
+let cancelAction = "Cancel"
+
 
 
 
