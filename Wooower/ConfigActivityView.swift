@@ -39,7 +39,7 @@ class ConfigActivityView {
                 }
                 descriptionLabel = (activity[postDescription] as! String)
                 if let user = activity[postUser] as? PFUser {
-                    if let userName = user.username {
+                    if let userName = user[userFbName] as? String {
                         name = userName
                         if let userPhoto = user[userFbPhoto] as? PFFile {
                             do {

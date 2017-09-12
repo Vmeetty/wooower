@@ -21,8 +21,7 @@ class LogInAndAddToData {
     func configActionSheet (sender: UIViewController) {
         let actionSheet = UIAlertController(title: alertTitle, message: alertMassage, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: alertActionTitle, style: .default, handler: { (action) in
-            let pfUser = PFUser()
-            LogInAndAddToData.sharedInstance.showLoginForm (pfUser: pfUser, sender: sender)
+            LogInAndAddToData.sharedInstance.showLoginForm(sender: sender)
         }))
         actionSheet.addAction(UIAlertAction(title: cancelAction, style: .cancel, handler: { (cancelAction) in
             if sender is AddViewController {
@@ -31,34 +30,28 @@ class LogInAndAddToData {
         }))
         sender.present(actionSheet, animated: true, completion: nil)
     }
-    
-    func showLoginForm (pfUser: PFUser, sender: UIViewController) {
-        LogInAndAddToData.sharedInstance.fetchingFbData3 (pfUser: pfUser, sender: sender)
+
+    func showLoginForm(sender: UIViewController) {
+        getFbData(sender: sender)
     }
     
-    func fetchingFbData3 (pfUser: PFUser, sender: UIViewController) {
+    func getFbData(sender: UIViewController) {
         let manager = FBSDKLoginManager()
-//        if let sender = sender as? MasterViewController {
-            manager.logIn(withReadPermissions: ["public_profile", "user_friends", "email"], from: sender) { (result, error) in
-                let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large)"], httpMethod: "GET")
-                request?.start(completionHandler: { (connection, result, error) in
-                    if ((error) != nil){
-                        // Process error
-                        print("Error: \(error)")
-                    }else if let result = result as? Dictionary<String, Any> {
-                        self.configPFUser(pfUser: pfUser, response: result, manager: manager)
-                    }
-                })
-            }
-//        }
-        
-        
+        manager.logIn(withReadPermissions: ["public_profile", "user_friends", "email"], from: sender) { (result, error) in
+            let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large)"], httpMethod: "GET")
+            request?.start(completionHandler: { (connection, result, error) in
+                if ((error) != nil){
+                    // Process error
+                    print("Error: \(error)")
+                }else if let fbUserData = result as? Dictionary<String, Any> {
+                    self.configPFUser(fbUserData: fbUserData)
+                }
+            })
+        }
     }
     
-    func configPFUser (pfUser: PFUser, response: Dictionary<String, Any>, manager: FBSDKLoginManager) {
-        print("fetched user: \(response)")
-        // edit PFUser
-        if let picture = response["picture"] as? Dictionary<String, Any> {
+    func configPFUser (fbUserData: Dictionary<String, Any>) {
+        if let picture = fbUserData["picture"] as? Dictionary<String, Any> {
             if let data = picture["data"] as? Dictionary<String, Any> {
                 let stringUrl = data["url"] as! String
                 let data = try? Data(contentsOf: NSURL(string: stringUrl) as! URL)
@@ -69,132 +62,55 @@ class LogInAndAddToData {
                         self.file = parseFile
                         parseFile.saveInBackground(block: { (succes, error) in
                             print("upload " + (succes ? "succes" : "error"))
-                            let userName : NSString = response["name"] as! NSString
-                            pfUser["username"] = userName
-                            pfUser.password = userName as String
-                            pfUser["fbName"] = userName
-                            let id : NSString = response["id"] as! NSString
+                            let pfUser = PFUser()
+                            let fbName : NSString = fbUserData["name"] as! NSString
+                            pfUser.password = fbName as String
+                            pfUser["fbName"] = fbName
+                            let id = fbUserData["id"] as! String
                             pfUser["fbID"] = id
+                            pfUser["username"] = id
                             pfUser["fbPhoto"] = self.file
-                            //                            FBSDKAccessToken.setCurrent(nil)
-                            //                            FBSDKProfile.setCurrent(nil)
-                            pfUser.signUpInBackground(block: { (succes, error) in
-                                if succes {
-                                    if pfUser.isNew {
-                                        print("sined up")
+                            
+                            self.loginUser(userName: id as String, pass: fbName as String)
+                            // проверка на наличие юзера в базе
+                            let query = PFUser.query()
+                            query?.whereKey(userFbID, equalTo: id)
+                            query?.findObjectsInBackground(block: { (users, error) in
+                                if let users = users {
+                                    if users.count == 0 {
+                                        self.signUpUser(pfUser: pfUser)
                                     } else {
-                                        print("we already have this user")
+                                       self.loginUser(userName: id as String, pass: fbName as String)
                                     }
-                                } else {
-                                    print("you have error")
-                                    //                                    PFFacebookUtils.linkUser(inBackground: pfUser, with: FBSDKAccessToken.current(), block: { (succes, error) in
-                                    //                                        if error != nil {
-                                    //                                            print("whatever error")
-                                    //                                        } else if succes {
-                                    //                                            print("user linked to existing")
-                                    //                                        } else {
-                                    //                                            print("nothing heppend :/")
-                                    //                                        }
-                                    //                                    })
                                 }
                             })
                         })
                     }
                 }
-                
             }
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    //    let loginViewController = PFLogInViewController()
-    //        loginViewController.fields = [.facebook]
-    //        loginViewController.facebookPermissions = ["public_profile"]
-    //        loginViewController.delegate = sender
-    //        self.present(loginViewController, animated: true, completion: nil)
-    
-    func loginUser3 () {
-        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "user_friends", "email"], block: { (result, error) in
-            if let user = result {
-                if user.isNew {
-                    print("User signed up and logged in through Facebook!")
-                } else {
-                    print("User logged in through Facebook!")
-                }
-                //                self.fetchingFbData3(pfUser: user)
+    func signUpUser (pfUser: PFUser) {
+        pfUser.signUpInBackground(block: { (succes, error) in
+            if succes {
+                print("sined up")
             } else {
-                print("Uh oh. The user cancelled the Facebook login.")
+                print("you have error")
             }
         })
     }
     
-    
-    
-    
-    
-    
-    
-    
-    ////////////////////////
-    
-    func loginUser2 (sender: Any) {
-        PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile"], block: { (result, error) in
-            if let user = result {
-                
-            }
-        })
-    }
-    
-    
-    func fetchingFbData2 (pfUser: PFUser) {
-        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large)"], httpMethod: "GET")
-        request?.start(completionHandler: { (_, result, _) in
-            if let result = result as? Dictionary<String, Any> {
-                let userObject = pfUser as PFObject
-                if let fbName = result["name"] as? String {
-                    userObject["fbName"] = fbName
-                }
-                //                pfUser.username = result["name"] as? String
-                //                let id = result["id"] as! String
-                //                let userName = DataBaseSearching.sharedInstance.chekcSameUsers(fbID: id, fbName: name)
-                //                if let sender = sender as? MasterViewController {
-                //                    sender.enterFB.title = userName
-                //                }
-            }
-        })
-        
-    }
-    
-    func loginUser (sender: Any) {
-        let manager = FBSDKLoginManager()
-        if let sender = sender as? MasterViewController {
-            manager.logIn(withReadPermissions: [], from: sender) { (result, error) in
-                self.fetchingFbData(sender: sender)
+    func loginUser (userName: String, pass: String) {
+        PFUser.logInWithUsername(inBackground: userName, password: pass) { (pfUser, error) in
+            if pfUser != nil {
+                print("it's loged in")
+            } else if error != nil {
+                print("smth wrong")
+                print("Error: \(error!) \(error.debugDescription)")
             }
         }
-        
     }
-    
-    func fetchingFbData (sender: Any) {
-        let request = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, picture.type(large)"], httpMethod: "GET")
-        request?.start(completionHandler: { (_, result, _) in
-            if let result = result as? Dictionary<String, Any> {
-                let name = result["name"] as! String
-                //                let email = result["email"] as! String
-                let userName = DataBaseSearching.sharedInstance.chekcSameUsers(fbName: name)
-                if let sender = sender as? MasterViewController {
-                    sender.enterFB.title = userName
-                }
-            }
-        })
         
-    }
-    
 }
 

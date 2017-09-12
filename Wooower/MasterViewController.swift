@@ -28,7 +28,6 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     func displayProfileButton () {
@@ -66,11 +65,11 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
         })
     }
     
-    func pushToProfile () {
+    func pushToProfile() {
         performSegue(withIdentifier: profileSegueID, sender: nil)
     }
     
-    func lofOut () {
+    func lofOut() {
         PFUser.logOut()
         enterFB.customView = nil
         enterFB.title = "Enter"
@@ -102,8 +101,7 @@ class MasterViewController: UIViewController, PFLogInViewControllerDelegate {
     
     @IBAction func showLoginFormAction(_ sender: UIBarButtonItem) {
         if PFUser.current() == nil {
-            let pfUser = PFUser()
-            LogInAndAddToData.sharedInstance.showLoginForm(pfUser: pfUser, sender: self)
+            LogInAndAddToData.sharedInstance.showLoginForm(sender: self)
         } else {
             performSegue(withIdentifier: profileSegueID, sender: self)
         }
